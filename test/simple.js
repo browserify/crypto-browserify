@@ -12,8 +12,6 @@ function assertSame (fn) {
 }
 
 assertSame(function (crypto, cb) {
-  var h = crypto.createHash('sha1')
-  h.update('hello', 'utf-8')
-  cb(null, h.digest('hex'))
+  cb(null, crypto.createHash('sha1').update('hello', 'utf-8').digest('hex'))
 })
 

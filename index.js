@@ -26,6 +26,7 @@ exports.createHash = function (alg) {
   return {
     update: function (data) {
       s += data
+      return this
     },
     digest: function (enc) {
       enc = enc || 'binary'
