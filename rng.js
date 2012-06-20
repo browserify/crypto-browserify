@@ -1,7 +1,7 @@
 // Original code adapted from Robert Kieffer.
 // details at https://github.com/broofa/node-uuid
 (function() {
-  _global = this;
+  var _global = this;
 
   var mathRNG, whatwgRNG;
 
