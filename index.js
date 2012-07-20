@@ -23,7 +23,7 @@ exports.createHash = function (alg) {
   if(!algorithms[alg])
     error('algorithm:', alg, 'is not yet supported')
   var s = ''
-  _alg = algorithms[alg]
+  var _alg = algorithms[alg]
   return {
     update: function (data) {
       s += data
