@@ -1,5 +1,9 @@
 # crypto-browserify
 
+[![Build
+Status](https://secure.travis-ci.org/dominictarr/crypto-browserify.png)](http://travis-ci.org/dominictarr/crypto-browserify)
+
+
 A (partial) port of `crypto` to the browser.
 
 Basically, I found some crypto implemented in JS lieing on the internet somewhere
