@@ -15,6 +15,10 @@ assertSame(function (crypto, cb) {
   cb(null, crypto.createHash('sha1').update('hello', 'utf-8').digest('hex'))
 })
 
+assertSame(function (crypto, cb) {
+  cb(null, crypto.createHash('md5').update('hello', 'utf-8').digest('hex'))
+})
+
 assert.equal(cryptoB.randomBytes(10).length, 10)
 
 cryptoB.randomBytes(10, function(ex, bytes) {
