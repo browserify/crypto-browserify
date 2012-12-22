@@ -2,7 +2,7 @@
   "author": "Dominic Tarr <dominic.tarr@gmail.com> (dominictarr.com)",
   "name": "crypto-browserify",
   "description": "partial implementation of crypto for the browser",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/dominictarr/crypto-browserify",
   "repository": {
     "type": "git",
