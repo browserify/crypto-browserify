@@ -1,11 +1,17 @@
 var sha = require('./sha')
 var rng = require('./rng')
+var md5 = require('./md5')
 
 var algorithms = {
   sha1: {
     hex: sha.hex_sha1,
     binary: sha.b64_sha1,
     ascii: sha.str_sha1
+  },
+  md5: {
+    hex: md5.hex_md5,
+    binary: md5.b64_md5,
+    ascii: md5.and_md5
   }
 }
 
