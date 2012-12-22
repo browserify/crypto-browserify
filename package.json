@@ -4,9 +4,9 @@
   "description": "partial implementation of crypto for the browser",
   "version": "0.1.2",
   "homepage": "https://github.com/dominictarr/crypto-browserify",
-  "repository" : {
-    "type" : "git",
-    "url" : "git://github.com/dominictarr/crypto-browserify.git"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dominictarr/crypto-browserify.git"
   },
   "scripts": {
     "test": "node test/simple.js"
@@ -15,6 +15,8 @@
     "node": "*"
   },
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "tape": "~0.1.5"
+  },
   "optionalDependencies": {}
 }
