@@ -2,6 +2,12 @@
 
 A (partial) port of `crypto` to the browser.
 
+
+[![travis](https://secure.travis-ci.org/dominictarr/crypto-browserify.png?branch=master)](https://travis-ci.org/dominictarr/crypto-browserify)
+
+[![browser support](http://ci.testling.com/dominictarr/crypto-browserify.png)](http://ci.testling.com/dominictarr/crypto-browserify)
+
+
 Basically, I found some crypto implemented in JS lieing on the internet somewhere
 and wrapped it in the part of the `crypto` api that I am currently using.
 
