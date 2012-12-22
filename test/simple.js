@@ -30,5 +30,6 @@ test('randomBytes', function (t) {
     bytes.forEach(function(bite) {
       assert.equal(typeof bite, 'number')
     })
+    t.end()
   })
 })
