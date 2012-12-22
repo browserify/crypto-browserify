@@ -11,7 +11,7 @@ var algorithms = {
   md5: {
     hex: md5.hex_md5,
     binary: md5.b64_md5,
-    ascii: md5.and_md5
+    ascii: md5.any_md5
   }
 }
 
