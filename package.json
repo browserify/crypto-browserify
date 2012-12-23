@@ -18,5 +18,26 @@
   "devDependencies": {
     "tape": "~0.1.5"
   },
+  "testling": {
+    "files": "test/*.js",
+    "browsers": {
+      "ie": [
+        8,
+        9
+      ],
+      "firefox": [
+        13
+      ],
+      "chrome": [
+        20
+      ],
+      "safari": [
+        5.1
+      ],
+      "opera": [
+        12
+      ]
+    }
+  },
   "optionalDependencies": {}
 }
