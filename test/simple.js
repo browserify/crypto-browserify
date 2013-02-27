@@ -24,14 +24,13 @@ assertSame(function md5(crypto, cb) {
 })
 
 test('randomBytes', function (t) {
-  t.plan(3 + 10)
+  t.plan(5)
   t.equal(cryptoB.randomBytes(10).length, 10)
+  t.ok(cryptoB.randomBytes(10) instanceof Buffer)
   cryptoB.randomBytes(10, function(ex, bytes) {
     t.error(ex)
     t.equal(bytes.length, 10)
-    bytes.forEach(function(bite) {
-      t.equal(typeof bite, 'number')
-    })
+    t.ok(bytes instanceof Buffer)
     t.end()
   })
 })
