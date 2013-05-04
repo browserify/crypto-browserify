@@ -1,3 +1,4 @@
+var Buffer = require('buffer').Buffer
 var sha = require('./sha')
 var rng = require('./rng')
 var md5 = require('./md5')
@@ -50,10 +51,10 @@ exports.createHash = function (alg) {
 exports.randomBytes = function(size, callback) {
   if (callback && callback.call) {
     try {
-      callback.call(this, undefined, rng(size));
+      callback.call(this, undefined, new Buffer(rng(size)));
     } catch (err) { callback(err); }
   } else {
-    return rng(size);
+    return new Buffer(rng(size));
   }
 }
 
