@@ -58,8 +58,13 @@ exports.randomBytes = function(size, callback) {
   }
 }
 
+function each(a, f) {
+  for(var i in a)
+    f(a[i], i)
+}
+
 // the least I can do is make error messages for the rest of the node.js/crypto api.
-;['createCredentials'
+each(['createCredentials'
 , 'createHmac'
 , 'createCypher'
 , 'createCypheriv'
@@ -68,7 +73,7 @@ exports.randomBytes = function(size, callback) {
 , 'createSign'
 , 'createVerify'
 , 'createDeffieHellman'
-, 'pbkdf2'].forEach(function (name) {
+, 'pbkdf2'], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
   }
