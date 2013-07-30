@@ -66,13 +66,13 @@ function each(a, f) {
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 each(['createCredentials'
 , 'createHmac'
-, 'createCypher'
-, 'createCypheriv'
+, 'createCipher'
+, 'createCipheriv'
 , 'createDecipher'
 , 'createDecipheriv'
 , 'createSign'
 , 'createVerify'
-, 'createDeffieHellman'
+, 'createDiffieHellman'
 , 'pbkdf2'], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
