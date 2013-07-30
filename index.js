@@ -16,6 +16,20 @@ var algorithms = {
   }
 }
 
+var algorithmsHmac = {
+  sha1: {
+    hex: sha.hex_hmac_sha1,
+    binary: sha.b64_hmac_sha1,
+    ascii: sha.str_hmac_sha1
+  },
+  md5: {
+    hex: md5.hex_hmac_md5,
+    binary: md5.b64_hmac_md5,
+    ascii: md5.any_hmac_md5
+  }
+}
+
+
 function error () {
   var m = [].slice.call(arguments).join(' ')
   throw new Error([
@@ -48,6 +62,30 @@ exports.createHash = function (alg) {
   }
 }
 
+exports.createHmac = function (alg, key) {
+  if (!algorithmsHmac[alg])
+    error('algorithm:', alg, 'is not yet supported')
+  if (typeof key != 'string')
+    key = key.toString('binary')
+  var s = ''
+  var _alg = algorithmsHmac[alg]
+  return {
+    update: function (data) {
+      s += data
+      return this
+    },
+    digest: function (enc) {
+      enc = enc || 'binary'
+      var fn
+      if (!(fn = _alg[enc]))
+        error('encoding:', enc, 'is not yet support for algorithm', alg)
+      var r = fn(key, s)
+      s = null
+      return r
+    }
+  }
+}
+
 exports.randomBytes = function(size, callback) {
   if (callback && callback.call) {
     try {
@@ -65,7 +103,6 @@ function each(a, f) {
 
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 each(['createCredentials'
-, 'createHmac'
 , 'createCipher'
 , 'createCipheriv'
 , 'createDecipher'
