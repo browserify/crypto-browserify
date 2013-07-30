@@ -382,3 +382,6 @@ function bit_rol(num, cnt)
 exports.hex_md5 = hex_md5;
 exports.b64_md5 = b64_md5;
 exports.any_md5 = any_md5;
+exports.hex_hmac_md5 = hex_hmac_md5;
+exports.b64_hmac_md5 = b64_hmac_md5;
+exports.any_hmac_md5 = any_hmac_md5;
