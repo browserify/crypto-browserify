@@ -18,7 +18,6 @@
     return bytes;
   }
 
-  // currently only available in webkit-based browsers.
   if (_global.crypto && crypto.getRandomValues) {
     var _rnds = new Uint32Array(4);
     whatwgRNG = function(size) {
