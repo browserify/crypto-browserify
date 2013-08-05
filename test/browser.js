@@ -1,6 +1,5 @@
-console.log(process.ENV);
-
-var test = require("tape")
+var test = require('tape')
+var Buffer = require('buffer').Buffer
 
 var crypto = require('../')
 
