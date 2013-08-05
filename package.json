@@ -20,24 +20,15 @@
   },
   "testling": {
     "files": "test/*.js",
-    "browsers": {
-      "ie": [
-        8,
-        9
-      ],
-      "firefox": [
-        13
-      ],
-      "chrome": [
-        20
-      ],
-      "safari": [
-        5.1
-      ],
-      "opera": [
-        12
-      ]
-    }
+    "browsers": [
+      "ie/8..latest",
+      "chrome/20..latest",
+      "firefox/10..latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6"
+    ]
   },
   "optionalDependencies": {}
 }
