@@ -3,8 +3,8 @@ var test = require("tape")
 var crypto = require('crypto')
 var cryptoB = require('../')
 
-function assertSame (fn) {
-  test(fn.name, function (t) {
+function assertSame(name, fn) {
+  test(name, function (t) {
     t.plan(1)
     fn(crypto, function (err, expected) {
       fn(cryptoB, function (err, actual) {
@@ -15,29 +15,23 @@ function assertSame (fn) {
   })
 }
 
-assertSame(function sha1 (crypto, cb) {
-  cb(null, crypto.createHash('sha1').update('hello', 'utf-8').digest('hex'))
-})
+var algorithms = ['sha1', 'sha256', 'md5'];
+var encodings = ['binary', 'hex', 'base64'];
 
-assertSame(function md5 (crypto, cb) {
-  cb(null, crypto.createHash('md5').update('hello', 'utf-8').digest('hex'))
-})
 
-assertSame(function sha256 (crypto, cb) {
-  cb(null, crypto.createHash('sha256').update('hello', 'utf-8').digest('hex'))
-})
+algorithms.forEach(function (algorithm) {
+    encodings.forEach(function (encoding) {
 
-assertSame(function sha1hmac (crypto, cb) {
-  cb(null, crypto.createHmac('sha1', 'secret').update('hello', 'utf-8').digest('hex'))
-})
+        assertSame(algorithm + ' hash using ' + encoding, function (crypto, cb) {
+            cb(null, crypto.createHash(algorithm).update('hello', 'utf-8').digest(encoding));
+        })
 
-assertSame(function md5hmac (crypto, cb) {
-  cb(null, crypto.createHmac('md5', 'secret').update('hello', 'utf-8').digest('hex'))
-})
+        assertSame(algorithm + ' hmac using ' + encoding, function (crypto, cb) {
+            cb(null, crypto.createHmac(algorithm, 'secret').update('hello', 'utf-8').digest(encoding))
+        })
 
-assertSame(function sha256hmac (crypto, cb) {
-  cb(null, crypto.createHmac('sha256', 'secret').update('hello', 'utf-8').digest('hex'))
-})
+    });
+});
 
 test('randomBytes', function (t) {
   t.plan(5)

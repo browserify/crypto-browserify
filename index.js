@@ -7,36 +7,36 @@ var md5 = require('./md5')
 var algorithms = {
   sha1: {
     hex: sha.hex_sha1,
-    binary: sha.b64_sha1,
-    ascii: sha.str_sha1
+    base64: sha.b64_sha1,
+    binary: sha.str_sha1
   },
   sha256: {
     hex: sha256.hex_sha256,
-    binary: sha256.b64_sha256,
-    ascii: sha256.str_sha256
+    base64: sha256.b64_sha256,
+    binary: sha256.str_sha256
   },
   md5: {
     hex: md5.hex_md5,
-    binary: md5.b64_md5,
-    ascii: md5.any_md5
+    base64: md5.b64_md5,
+    binary: md5.bin_md5
   }
 }
 
 var algorithmsHmac = {
   sha1: {
     hex: sha.hex_hmac_sha1,
-    binary: sha.b64_hmac_sha1,
-    ascii: sha.str_hmac_sha1
+    base64: sha.b64_hmac_sha1,
+    binary: sha.str_hmac_sha1
   },
   sha256: {
     hex: sha256.hex_hmac_sha256,
-    binary: sha256.b64_hmac_sha256,
-    ascii: sha256.str_hmac_sha256
+    base64: sha256.b64_hmac_sha256,
+    binary: sha256.str_hmac_sha256
   },
   md5: {
     hex: md5.hex_hmac_md5,
-    binary: md5.b64_hmac_md5,
-    ascii: md5.any_hmac_md5
+    base64: md5.b64_hmac_md5,
+    binary: md5.bin_hmac_md5
   }
 }
 

@@ -12,7 +12,7 @@
  * the server-side, but the defaults work in most cases.
  */
 var hexcase = 0;   /* hex output format. 0 - lowercase; 1 - uppercase        */
-var b64pad  = "";  /* base-64 pad character. "=" for strict RFC compliance   */
+var b64pad  = "="; /* base-64 pad character. "=" for strict RFC compliance   */
 
 /*
  * These are the functions you'll usually want to call
@@ -20,11 +20,14 @@ var b64pad  = "";  /* base-64 pad character. "=" for strict RFC compliance   */
  */
 function hex_md5(s)    { return rstr2hex(rstr_md5(str2rstr_utf8(s))); }
 function b64_md5(s)    { return rstr2b64(rstr_md5(str2rstr_utf8(s))); }
+function bin_md5(s)   { return rstr_md5(str2rstr_utf8(s)); }
 function any_md5(s, e) { return rstr2any(rstr_md5(str2rstr_utf8(s)), e); }
 function hex_hmac_md5(k, d)
   { return rstr2hex(rstr_hmac_md5(str2rstr_utf8(k), str2rstr_utf8(d))); }
 function b64_hmac_md5(k, d)
   { return rstr2b64(rstr_hmac_md5(str2rstr_utf8(k), str2rstr_utf8(d))); }
+function bin_hmac_md5(k, d)
+  { return rstr_hmac_md5(str2rstr_utf8(k), str2rstr_utf8(d)); }
 function any_hmac_md5(k, d, e)
   { return rstr2any(rstr_hmac_md5(str2rstr_utf8(k), str2rstr_utf8(d)), e); }
 
@@ -381,7 +384,9 @@ function bit_rol(num, cnt)
 
 exports.hex_md5 = hex_md5;
 exports.b64_md5 = b64_md5;
+exports.bin_md5 = bin_md5;
 exports.any_md5 = any_md5;
 exports.hex_hmac_md5 = hex_hmac_md5;
 exports.b64_hmac_md5 = b64_hmac_md5;
+exports.bin_hmac_md5 = bin_hmac_md5;
 exports.any_hmac_md5 = any_hmac_md5;
