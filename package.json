@@ -9,7 +9,7 @@
     "url": "git://github.com/dominictarr/crypto-browserify.git"
   },
   "scripts": {
-    "test": "node test/simple.js"
+    "test": "node test/node.js"
   },
   "engines": {
     "node": "*"
@@ -19,7 +19,7 @@
     "tape": "~1.0.4"
   },
   "testling": {
-    "files": "test/*.js",
+    "files": "test/browser.js",
     "browsers": [
       "ie/8..latest",
       "chrome/20..latest",
