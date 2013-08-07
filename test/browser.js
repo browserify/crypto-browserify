@@ -1,7 +1,7 @@
-var test = require('tape')
-var Buffer = require('buffer').Buffer
+var test = require('tape');
+var Buffer = require('buffer').Buffer;
 
-var crypto = require('../')
+var crypto = require('../');
 
 var algorithms = ['sha1', 'sha256', 'md5'];
 var encodings = ['binary', 'hex', 'base64'];
@@ -37,6 +37,15 @@ EXPECTED['md5-hmac-binary'] = atob('ut5jhjxh7QsxZYBuzWrO/A==');
 EXPECTED['md5-hmac-hex'] = 'bade63863c61ed0b3165806ecd6acefc';
 EXPECTED['md5-hmac-base64'] = 'ut5jhjxh7QsxZYBuzWrO/A==';
 
+EXPECTED['md5-with-binary'] = '27549c8ff29ca52f7957f89c328dbb6d';
+EXPECTED['sha1-with-binary'] = '4fa10dda29053b237b5d9703151c852c61e6d8d7';
+EXPECTED['sha256-with-binary'] = '424ff84246aabc1560a2881b9664108dfe26784c762d930c4ff396c085f4183b';
+
+EXPECTED['md5-empty-string'] = 'd41d8cd98f00b204e9800998ecf8427e';
+EXPECTED['sha1-empty-string'] = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
+EXPECTED['sha256-empty-string'] = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
+
+
 algorithms.forEach(function (algorithm) {
     encodings.forEach(function (encoding) {
         test(algorithm + ' hash using ' + encoding, function (t) {
@@ -55,16 +64,37 @@ algorithms.forEach(function (algorithm) {
             t.end();
         });
     });
+
+    test(algorithm + ' with empty string', function (t) {
+        t.plan(1);
+        var actual = crypto.createHash(algorithm).update('', 'utf-8').digest('hex');
+        var expected = EXPECTED[algorithm + '-empty-string'];
+        t.equal(actual, expected);
+        t.end();
+    });
+
+    test(algorithm + ' with raw binary', function (t) {
+        t.plan(1);
+        var seed = 'hello';
+        for (var i = 0; i < 1000; i++) {
+            seed = crypto.createHash(algorithm).update(seed).digest('binary');
+        }
+        var actual = crypto.createHash(algorithm).update(seed).digest('hex');
+        var expected = EXPECTED[algorithm + '-with-binary'];
+        t.equal(actual, expected);
+        t.end();
+    });
 });
 
+
 test('randomBytes', function (t) {
-  t.plan(5)
-  t.equal(crypto.randomBytes(10).length, 10)
-  t.ok(crypto.randomBytes(10) instanceof Buffer)
-  crypto.randomBytes(10, function(ex, bytes) {
-    t.error(ex)
-    t.equal(bytes.length, 10)
-    t.ok(bytes instanceof Buffer)
-    t.end()
-  })
-})
+    t.plan(5);
+    t.equal(crypto.randomBytes(10).length, 10);
+    t.ok(crypto.randomBytes(10) instanceof Buffer);
+    crypto.randomBytes(10, function(ex, bytes) {
+        t.error(ex);
+        t.equal(bytes.length, 10);
+        t.ok(bytes instanceof Buffer);
+        t.end();
+  });
+});
