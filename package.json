@@ -30,5 +30,6 @@
       "ipad/6"
     ]
   },
-  "optionalDependencies": {}
+  "optionalDependencies": {},
+  "license": "MIT"
 }
