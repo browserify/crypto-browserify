@@ -5,41 +5,53 @@ var rng = require('./rng')
 var md5 = require('./md5')
 
 var algorithms = {
-  sha1: {
-    hex: sha.hex_sha1,
-    base64: sha.b64_sha1,
-    binary: sha.str_sha1
-  },
-  sha256: {
-    hex: sha256.hex_sha256,
-    base64: sha256.b64_sha256,
-    binary: sha256.str_sha256
-  },
-  md5: {
-    hex: md5.hex_md5,
-    base64: md5.b64_md5,
-    binary: md5.bin_md5
-  }
+  sha1: sha,
+  sha256: sha256,
+  md5: md5
 }
 
-var algorithmsHmac = {
-  sha1: {
-    hex: sha.hex_hmac_sha1,
-    base64: sha.b64_hmac_sha1,
-    binary: sha.str_hmac_sha1
-  },
-  sha256: {
-    hex: sha256.hex_hmac_sha256,
-    base64: sha256.b64_hmac_sha256,
-    binary: sha256.str_hmac_sha256
-  },
-  md5: {
-    hex: md5.hex_hmac_md5,
-    base64: md5.b64_hmac_md5,
-    binary: md5.bin_hmac_md5
+var blocksize = 64
+var zeroBuffer = new Buffer(blocksize); zeroBuffer.fill(0)
+function hmac(fn, key, data) {
+  if(!Buffer.isBuffer(key)) key = new Buffer(key)
+  if(!Buffer.isBuffer(data)) data = new Buffer(data)
+
+  if(key.length > blocksize) {
+    key = fn(key)
+  } else if(key.length < blocksize) {
+    key = Buffer.concat([key, zeroBuffer], blocksize)
   }
+
+  var ipad = new Buffer(blocksize), opad = new Buffer(blocksize)
+  for(var i = 0; i < blocksize; i++) {
+    ipad[i] = key[i] ^ 0x36;
+    opad[i] = key[i] ^ 0x5C;
+  }
+
+  var hash = fn(Buffer.concat([ipad, data]))
+  return fn(Buffer.concat([opad, hash]))
 }
 
+function hash(alg, key) {
+  alg = alg || 'sha1'
+  var fn = algorithms[alg]
+  var bufs = []
+  var length = 0
+  if(!fn) error('algorithm:', alg, 'is not yet supported')
+  return {
+    update: function (data) {
+      bufs.push(data)
+      length += data.length
+      return this
+    },
+    digest: function (enc) {
+      var buf = Buffer.concat(bufs)
+      var r = key ? hmac(fn, key, buf) : fn(buf)
+      bufs = null
+      return enc ? r.toString(enc) : r
+    }
+  }
+}
 
 function error () {
   var m = [].slice.call(arguments).join(' ')
@@ -50,53 +62,8 @@ function error () {
     ].join('\n'))
 }
 
-exports.createHash = function (alg) {
-  alg = alg || 'sha1'
-  if(!algorithms[alg])
-    error('algorithm:', alg, 'is not yet supported')
-  var s = ''
-  var _alg = algorithms[alg]
-  return {
-    update: function (data) {
-      s += data
-      return this
-    },
-    digest: function (enc) {
-      enc = enc || 'binary'
-      var fn
-      if(!(fn = _alg[enc]))
-        error('encoding:', enc , 'is not yet supported for algorithm', alg)
-      var r = fn(s)
-      s = null //not meant to use the hash after you've called digest.
-      return r
-    }
-  }
-}
-
-exports.createHmac = function (alg, key) {
-  if (!algorithmsHmac[alg])
-    error('algorithm:', alg, 'is not yet supported')
-  if (typeof key != 'string')
-    key = key.toString('binary')
-  var s = ''
-  var _alg = algorithmsHmac[alg]
-  return {
-    update: function (data) {
-      s += data
-      return this
-    },
-    digest: function (enc) {
-      enc = enc || 'binary'
-      var fn
-      if (!(fn = _alg[enc]))
-        error('encoding:', enc, 'is not yet support for algorithm', alg)
-      var r = fn(key, s)
-      s = null
-      return r
-    }
-  }
-}
-
+exports.createHash = function (alg) { return hash(alg) }
+exports.createHmac = function (alg, key) { return hash(alg, key) }
 exports.randomBytes = function(size, callback) {
   if (callback && callback.call) {
     try {
