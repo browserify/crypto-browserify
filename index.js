@@ -24,8 +24,8 @@ function hmac(fn, key, data) {
 
   var ipad = new Buffer(blocksize), opad = new Buffer(blocksize)
   for(var i = 0; i < blocksize; i++) {
-    ipad[i] = key[i] ^ 0x36;
-    opad[i] = key[i] ^ 0x5C;
+    ipad[i] = key[i] ^ 0x36
+    opad[i] = key[i] ^ 0x5C
   }
 
   var hash = fn(Buffer.concat([ipad, data]))
@@ -67,10 +67,10 @@ exports.createHmac = function (alg, key) { return hash(alg, key) }
 exports.randomBytes = function(size, callback) {
   if (callback && callback.call) {
     try {
-      callback.call(this, undefined, new Buffer(rng(size)));
-    } catch (err) { callback(err); }
+      callback.call(this, undefined, new Buffer(rng(size)))
+    } catch (err) { callback(err) }
   } else {
-    return new Buffer(rng(size));
+    return new Buffer(rng(size))
   }
 }
 
