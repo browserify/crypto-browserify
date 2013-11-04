@@ -40,6 +40,8 @@ function hash(alg, key) {
   if(!fn) error('algorithm:', alg, 'is not yet supported')
   return {
     update: function (data) {
+      if(!Buffer.isBuffer(data)) data = new Buffer(data)
+        
       bufs.push(data)
       length += data.length
       return this
