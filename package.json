@@ -30,6 +30,9 @@
       "ipad/6"
     ]
   },
+  "browserify": {
+    "transform": ["brfs"]
+  },
   "optionalDependencies": {},
   "license": "MIT"
 }
