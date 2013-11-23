@@ -14,8 +14,10 @@
   "engines": {
     "node": "*"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
+    "brfs": "~0.0.8",
     "tape": "~1.0.4"
   },
   "testling": {
@@ -29,9 +31,6 @@
       "iphone/6",
       "ipad/6"
     ]
-  },
-  "browserify": {
-    "transform": ["brfs"]
   },
   "optionalDependencies": {},
   "license": "MIT"
