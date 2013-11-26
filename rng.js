@@ -19,14 +19,9 @@
   }
 
   if (_global.crypto && crypto.getRandomValues) {
-    var _rnds = new Uint32Array(4);
     whatwgRNG = function(size) {
-      var bytes = new Array(size);
-      crypto.getRandomValues(_rnds);
-
-      for (var c = 0 ; c < size; c++) {
-        bytes[c] = _rnds[c >> 2] >>> ((c & 0x03) * 8) & 0xff;
-      }
+      var bytes = new Uint8Array(size);
+      crypto.getRandomValues(bytes);
       return bytes;
     }
   }
