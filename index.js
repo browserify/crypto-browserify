@@ -33,7 +33,7 @@ function hmac(fn, key, data) {
 }
 
 function hash(alg, key) {
-  alg = alg || 'sha1'
+  if(!alg) throw new Error('Must give hashtype string as argument')
   var fn = algorithms[alg]
   var bufs = []
   var length = 0
