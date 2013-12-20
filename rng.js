@@ -1,7 +1,8 @@
 // Original code adapted from Robert Kieffer.
 // details at https://github.com/broofa/node-uuid
 (function() {
-  var _global = this;
+  var _global = this,
+      crypto = _global.crypto || _global.Crypto; // IE 11 uses Crypto instead of crypto
 
   var mathRNG, whatwgRNG;
 
@@ -18,7 +19,7 @@
     return bytes;
   }
 
-  if (_global.crypto && crypto.getRandomValues) {
+  if (crypto && crypto.getRandomValues) {
     whatwgRNG = function(size) {
       var bytes = new Uint8Array(size);
       crypto.getRandomValues(bytes);
