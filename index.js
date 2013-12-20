@@ -1,8 +1,8 @@
 var Buffer = require('buffer').Buffer
-var sha = require('./sha')
-var sha256 = require('./sha256')
-var rng = require('./rng')
-var md5 = require('./md5')
+var sha = require('./lib/sha')
+var sha256 = require('./lib/sha256')
+var rng = require('./lib/rng')
+var md5 = require('./lib/md5')
 
 var algorithms = {
   sha1: sha,
