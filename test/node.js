@@ -31,9 +31,15 @@ describe('Crypto', function() {
             })
         })
 
-        var algorithms = [ 'md5', 'sha1', 'sha224', 'sha256' ];
+        var algorithms = [ 'md4', 'md5', 'sha1', 'sha224', 'sha256' ];
         var vectors = path.join(path.dirname(__filename), 'vectors');
         var vectorHashes = {
+          'md4': [
+            '31d6cfe0d16ae931b73c59d7e0c089c0',
+            'c7215e7d305abfa7f00f9909db8d6770',
+            '6a393bac79c17ac4b4c807c7e4308246',
+            '6b455bef955c34837d0789d2941cae5d'
+          ],
           'md5': [
             'd41d8cd98f00b204e9800998ecf8427e',
             'c3e97dd6e97fb5125688c97f36720cbe',
@@ -179,7 +185,7 @@ describe('Crypto', function() {
             })
         })
 
-        var algorithms = [ 'md5', 'sha1', 'sha224', 'sha256' ];
+        var algorithms = [ 'md4', 'md5', 'sha1', 'sha224', 'sha256' ];
 
         algorithms.forEach(function(algo){
           describe(algo.toUpperCase(), function() {
