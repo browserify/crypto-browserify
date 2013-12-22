@@ -9,7 +9,7 @@
     "url": "git://github.com/dominictarr/crypto-browserify.git"
   },
   "scripts": {
-    "test": "mocha --require should --reporter spec test/node.js"
+    "test": "mocha --require expect.js --reporter spec test/node.js"
   },
   "engines": {
     "node": "*"
@@ -18,11 +18,11 @@
   "devDependencies": {
     "brfs": "~0.0.8",
     "mocha": "~1.16.1",
-    "should": "~2.1.1"
+    "expect.js": "LearnBoost/expect.js"
   },
   "testling": {
     "files": "test/browser.js",
-    "harness" : "mocha",
+    "harness": "mocha",
     "browsers": [
       "ie/8..latest",
       "chrome/20..latest",
