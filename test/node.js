@@ -31,7 +31,7 @@ describe('Crypto', function() {
             })
         })
 
-        var algorithms = [ 'md5', 'sha1', 'sha256' ];
+        var algorithms = [ 'md5', 'sha1', 'sha224', 'sha256' ];
         var vectors = path.join(path.dirname(__filename), 'vectors');
         var vectorHashes = {
           'md5': [
@@ -45,6 +45,12 @@ describe('Crypto', function() {
             '3cdf2936da2fc556bfa533ab1eb59ce710ac80e5',
             'a6b5b9f854cfb76701c3bddbf374b3094ea49cba',
             '7b0fa84ebbcff7d7f4500f73d79660c4a3431b67'
+          ],
+          'sha224': [
+            'd14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f',
+            '23fa1e672a6c2acdc4d7bfae713e0c9337ba057b5d5ace2685b59321',
+            '561c8bf49dc2d996ef5e48c90f33bf020b8e5cf6cbab12910e212593',
+            'bad5ffb737a22625b1fefab26f330668f31d5bb19e2b61787971ea81'
           ],
           'sha256': [
             'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
@@ -173,7 +179,7 @@ describe('Crypto', function() {
             })
         })
 
-        var algorithms = [ 'md5', 'sha1', 'sha256' ];
+        var algorithms = [ 'md5', 'sha1', 'sha224', 'sha256' ];
 
         algorithms.forEach(function(algo){
           describe(algo.toUpperCase(), function() {
@@ -237,7 +243,9 @@ describe('Crypto', function() {
 
             it('should return the requested amount of bytes', function() {
                 [0, 1, 2, 4, 16, 256, 1024].forEach(function(len) {
-                  expect(crypto.randomBytes(len)).to.have.length(len);
+                  var rand = crypto.randomBytes(len);
+                  expect(rand).to.have.length(len);
+                  expect(rand).to.be.a(Buffer);
                 });
             })
 

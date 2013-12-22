@@ -1,11 +1,13 @@
 var Buffer = require('buffer').Buffer
 var sha = require('./lib/hash/sha')
+var sha224 = require('./lib/hash/sha224')
 var sha256 = require('./lib/hash/sha256')
 var md5 = require('./lib/hash/md5')
 var rng = require('./lib/rng/rng')
 
 var algorithms = {
   sha1: sha,
+  sha224: sha224,
   sha256: sha256,
   md5: md5
 }

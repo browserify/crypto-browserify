@@ -209,7 +209,9 @@ describe('Crypto', function() {
 
             it('should return the requested amount of bytes', function() {
                 [0, 1, 2, 4, 16, 256, 1024].forEach(function(len) {
-                  expect(crypto.randomBytes(len)).to.have.length(len);
+                  var rand = crypto.randomBytes(len);
+                  expect(rand).to.have.length(len);
+                  expect(rand).to.be.a(Buffer);
                 });
             })
 
