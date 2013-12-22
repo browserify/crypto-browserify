@@ -71,7 +71,7 @@ describe('Crypto', function() {
                 var browserify = crypto.createHash(algo).update('Test123').digest('binary');
                 expect(browserify).to.equal(node);
               })
-              it('should calculate the correct hash when no digest is passed', function() {
+              it('should use Buffer as the default digest', function() {
                 // This test fails on node 0.8 due to API changes documented here:
                 // http://nodejs.org/api/crypto.html#crypto_recent_api_changes
                 if(/0\.8\..+/.test(process.versions.node)) return;
@@ -151,6 +151,74 @@ describe('Crypto', function() {
         });
     })
 
+    describe('HMAC', function() {
+        it('should not allow update after digest', function() {
+          var hmac = crypto.createHmac('sha1', 'boo');
+          hmac.update('test');
+          hmac.digest('hex');
+          expect(hmac.update).withArgs('test').to.throwException();
+        })
+
+        describe('#createHmac()', function() {
+            it('should throw when no arguments are passed in', function() {
+              expect(crypto.createHmac).withArgs().to.throwException();
+            })
+
+            it('should throw when no key is passed in', function() {
+              expect(crypto.createHmac).withArgs('sha1').to.throwException();
+            })
+
+            it('should throw when an algorithm is invalid', function() {
+              expect(crypto.createHmac).withArgs('boo', 'test').to.throwException();
+            })
+        })
+
+        var algorithms = [ 'md5', 'sha1', 'sha256' ];
+
+        algorithms.forEach(function(algo){
+          describe(algo.toUpperCase(), function() {
+              it('should calculate the correct hmac in hex', function() {
+                var node = nodecrypto.createHmac(algo, 'boo').update('Test123').digest('hex');
+                var browserify = crypto.createHmac(algo, 'boo').update('Test123').digest('hex');
+                expect(browserify).to.equal(node);
+              })
+              it('should calculate the correct hmac in base64', function() {
+                var node = nodecrypto.createHmac(algo, 'boo').update('Test123').digest('base64');
+                var browserify = crypto.createHmac(algo, 'boo').update('Test123').digest('base64');
+                expect(browserify).to.equal(node);
+              })
+              it('should calculate the correct hmac in binary', function() {
+                var node = nodecrypto.createHmac(algo, 'boo').update('Test123').digest('binary');
+                var browserify = crypto.createHmac(algo, 'boo').update('Test123').digest('binary');
+                expect(browserify).to.equal(node);
+              })
+              it('should calculate the correct hmac when no digest is passed', function() {
+                // This test fails on node 0.8 due to API changes documented here:
+                // http://nodejs.org/api/crypto.html#crypto_recent_api_changes
+                if(/0\.8\..+/.test(process.versions.node)) return;
+
+                var node = nodecrypto.createHmac(algo, 'boo').update('Test123').digest();
+                var browserify = crypto.createHmac(algo, 'boo').update('Test123').digest();
+                expect(browserify).to.eql(node); // Please note 'eql', deep equality!!!!
+              })
+              it('should calculate the correct hmac when multiple updates are called', function() {
+                var node = nodecrypto.createHmac(algo, 'boo').update('Test').update('123').digest('hex');
+                var browserify = crypto.createHmac(algo, 'boo').update('Test').update('123').digest('hex');
+                expect(browserify).to.equal(node);
+
+                var h1 = crypto.createHmac(algo, 'boo').update('Test123').digest('hex');
+                var h2 = crypto.createHmac(algo, 'boo').update('Test').update('123').digest('hex');
+                expect(h1).to.equal(h2);
+              })
+              it('should calculate the correct hmac for utf-8 data', function() {
+                var node = nodecrypto.createHmac(algo, 'boo').update('hellø', 'utf8').digest('hex');
+                var browserify = crypto.createHmac(algo, 'boo').update('hellø', 'utf8').digest('hex');
+                expect(browserify).to.equal(node);
+              })
+          })
+        });
+    })
+
     describe('RNG', function() {
         describe('#randomBytes()', function() {
             it('should throw on invalid arguments', function() {
@@ -184,79 +252,3 @@ describe('Crypto', function() {
         })
     })
 })
-
-
-
-
-/*function assertSame(name, fn) {
-    test(name, function (t) {
-        t.plan(1);
-        fn(crypto, function (err, expected) {
-            fn(cryptoB, function (err, actual) {
-                t.equal(actual, expected);
-                t.end();
-            });
-        });
-    });
-}
-
-var algorithms = ['sha1', 'sha256', 'md5'];
-var encodings = ['binary', 'hex', 'base64'];
-
-
-algorithms.forEach(function (algorithm) {
-    encodings.forEach(function (encoding) {
-        assertSame(algorithm + ' hash using ' + encoding, function (crypto, cb) {
-            cb(null, crypto.createHash(algorithm).update('hellø', 'utf-8').digest(encoding));
-        })
-
-        assertSame(algorithm + ' hmac using ' + encoding, function (crypto, cb) {
-            cb(null, crypto.createHmac(algorithm, 'secret').update('hellø', 'utf-8').digest(encoding))
-        })
-    });
-
-    assertSame(algorithm + ' with raw binary', function (crypto, cb) {
-        var seed = 'hellø';
-        for (var i = 0; i < 1000; i++) {
-            seed = crypto.createHash(algorithm).update(new Buffer(seed)).digest('binary');
-        }
-        cb(null, crypto.createHash(algorithm).update(new Buffer(seed)).digest('hex'));
-    });
-
-    assertSame(algorithm + ' empty string', function (crypto, cb) {
-        cb(null, crypto.createHash(algorithm).update('').digest('hex'));
-    });
-});
-
-function pad(n, w) {
-  n = n + ''; return new Array(w - n.length + 1).join('0') + n;
-}
-
-var vectors = fs.readdirSync(__dirname + '/vectors').sort().
-    filter(function (t) { return t.match(/\.dat$/); }).
-    map(function (t) { return fs.readFileSync(__dirname + '/vectors/' + t); });
-
-['md5', 'sha1', 'sha256'].forEach(function (algorithm) {
-    test(algorithm, function (t) {
-        function hash(data) { return cryptoB.createHash(algorithm).update(data).digest('hex'); }
-
-        var hashes = fs.readFileSync(__dirname + '/vectors/byte-hashes.' + algorithm).toString().split(/\r?\n/);
-        t.plan(vectors.length);
-        for (var i = 0; i < vectors.length; i++) {
-            t.equal(hash(vectors[i]), hashes[i], 'byte' + pad(i, 4) + '.dat');
-        }
-    });
-});
-
-test('randomBytes', function (t) {
-    t.plan(5);
-    t.equal(cryptoB.randomBytes(10).length, 10);
-    t.ok(cryptoB.randomBytes(10) instanceof Buffer);
-    cryptoB.randomBytes(10, function(ex, bytes) {
-        t.error(ex);
-        t.equal(bytes.length, 10);
-        t.ok(bytes instanceof Buffer);
-        t.end();
-  });
-});
-*/
