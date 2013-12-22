@@ -72,6 +72,10 @@ describe('Crypto', function() {
                 expect(browserify).to.equal(node);
               })
               it('should calculate the correct hash when no digest is passed', function() {
+                // This test fails on node 0.8 due to API changes documented here:
+                // http://nodejs.org/api/crypto.html#crypto_recent_api_changes
+                if(/0\.8\..+/.test(process.versions.node)) return;
+
                 var node = nodecrypto.createHash(algo).update('Test123').digest();
                 var browserify = crypto.createHash(algo).update('Test123').digest();
                 expect(browserify).to.eql(node); // Please note 'eql', deep equality!!!!
