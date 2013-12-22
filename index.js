@@ -1,8 +1,8 @@
 var Buffer = require('buffer').Buffer
-var sha = require('./lib/sha')
-var sha256 = require('./lib/sha256')
-var rng = require('./lib/rng')
-var md5 = require('./lib/md5')
+var sha = require('./lib/hash/sha')
+var sha256 = require('./lib/hash/sha256')
+var md5 = require('./lib/hash/md5')
+var rng = require('./lib/rng/rng')
 
 var algorithms = {
   sha1: sha,
@@ -67,9 +67,11 @@ function error () {
 exports.createHash = function (alg) { return hash(alg) }
 exports.createHmac = function (alg, key) { return hash(alg, key) }
 exports.randomBytes = function(size, callback) {
+  if(typeof(size) != 'number' || size < 0) throw new TypeError('Argument #1 must be number > 0');
+
   if (callback && callback.call) {
     try {
-      callback.call(this, undefined, new Buffer(rng(size)))
+      callback.call(this, null, new Buffer(rng(size)))
     } catch (err) { callback(err) }
   } else {
     return new Buffer(rng(size))
