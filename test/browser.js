@@ -28,8 +28,18 @@ describe('Crypto', function() {
             })
         })
 
-        var algorithms = [ 'md5', 'sha1', 'sha256' ];
+        var algorithms = [ 'md4', 'md5', 'sha1', 'sha224', 'sha256' ];
         var vectorHashes = {
+          "md4": {
+            "Test123": {
+              "hex": "a713518eb92c69a77644698080a109f0",
+              "binary": "§\u0013Q¹,i§vDi¡\tð",
+              "base64": "pxNRjrksaad2RGmAgKEJ8A=="
+            },
+            "hellø": {
+              "hex": "515fe3bc205771a3f5eb64b3250b527b"
+            }
+          },
           "md5": {
             "Test123": {
               "hex": "68eacb97d86f0c4621fa2b0e17cabd8c",
@@ -48,6 +58,16 @@ describe('Crypto', function() {
             },
             "hellø": {
               "hex": "1921ff95d534deda9c9d128b8c10780ed626306f"
+            }
+          },
+          "sha224": {
+            "Test123": {
+              "hex": "17ec11a26b1f5a1481eed7a7da36865e3c70318e50065dbc506d9d24",
+              "binary": "\u0017ì\u0011¢k\u001fZ\u0014î×§Ú6^<p1P\u0006]¼Pm$",
+              "base64": "F+wRomsfWhSB7ten2jaGXjxwMY5QBl28UG2dJA=="
+            },
+            "hellø": {
+              "hex": "597f365c33717c1cea91e21365fb69652841d5ca843c9a91bbcd164f"
             }
           },
           "sha256": {
@@ -123,8 +143,18 @@ describe('Crypto', function() {
             })
         })
 
-        var algorithms = [ 'md5', 'sha1', 'sha256' ];
+        var algorithms = [ 'md4', 'md5', 'sha1', 'sha224', 'sha256' ];
         var vectorHmacs = {
+          "md4": {
+            "Test123": {
+              "hex": "804d824e062bc0525dbae421bd0e75c1",
+              "binary": "MN\u0006+ÀR]ºä!½\u000euÁ",
+              "base64": "gE2CTgYrwFJduuQhvQ51wQ=="
+            },
+            "hellø": {
+              "hex": "d8cf0e5e1acd00d52424fdd33b7c53e6"
+            }
+          },
           "md5": {
             "Test123": {
               "hex": "d2058455d95509c4e41750682180205a",
@@ -145,6 +175,16 @@ describe('Crypto', function() {
               "hex": "2fd8401b3e82695b879310da040eb96fa7eebeef"
             }
           },
+          "sha224": {
+            "Test123": {
+              "hex": "d7948dfe7e7a4f3ddabb500db9562fc0ae57ef7649619793cb4febc8",
+              "binary": "×þ~zO=Ú»P\r¹V/À®WïvIaËOëÈ",
+              "base64": "15SN/n56Tz3au1ANuVYvwK5X73ZJYZeTy0/ryA=="
+            },
+            "hellø": {
+              "hex": "423e6b977fb1b48acdb3a3185c8774cb1d8f814ef8f1dbe881e7cb51"
+            }
+          },
           "sha256": {
             "Test123": {
               "hex": "04939d2e4d96cc5d03c600f8fc7afbc50559333e31e349abafca0dbb757998e0",
@@ -155,7 +195,7 @@ describe('Crypto', function() {
               "hex": "77c440dd0ec6b18045ee72e54ff89dbb332184fa6e4587334dcdd321caa12068"
             }
           }
-        }
+        };
 
         algorithms.forEach(function(algo){
           describe(algo.toUpperCase(), function() {
