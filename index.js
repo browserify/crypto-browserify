@@ -65,7 +65,7 @@ function error () {
 }
 
 exports.createHash = function (alg) { return hash(alg) }
-exports.createHmac = function (alg, key) { return hash(alg, key) }
+exports.createHmac = function (alg, key) { if(!key) throw new TypeError('Not a buffer'); return hash(alg, key) }
 exports.randomBytes = function(size, callback) {
   if(typeof(size) != 'number' || size < 0) throw new TypeError('Argument #1 must be number > 0');
 
