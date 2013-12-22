@@ -18,3 +18,20 @@ I will add you as a maintainer.
 
 Provided that you agree that it should replicate the [node.js/crypto](http://nodejs.org/api/crypto.html) api exactly, of course.
 
+## TODO
+
+### Hash Algorithms
+
+  ~~md4~~
+  ~~md5~~
+  mdc2
+  ripemd
+  ripemd160
+  rmd160
+  sha
+  ~~sha1~~
+  ~~sha224~~
+  ~~sha256~~
+  sha384
+  sha512
+  whirlpool
