@@ -263,6 +263,15 @@ describe('Crypto', function() {
                 done();
               })
             })
+
+            it('should use HTML5 Crypto API when available', function() {
+              if(window.crypto)
+                expect(require('../lib/rng/rng')).to.equal(window.crypto);
+              else if(window.Crypto)
+                expect(require('../lib/rng/rng')).to.equal(window.Crypto);
+              else
+                expect(require('../lib/rng/rng')).to.equal(Math.random);
+            })
         })
     })
 })

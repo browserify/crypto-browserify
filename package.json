@@ -16,7 +16,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "brfs": "~0.0.8",
     "mocha": "~1.16.1",
     "expect.js": "LearnBoost/expect.js"
   },
