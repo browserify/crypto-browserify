@@ -98,7 +98,7 @@ describe('Crypto', function() {
               })
               it('should use Buffer as the default digest', function() {
                 var browserify = crypto.createHash(algo).update('Test123').digest();
-                expect(Buffer.isBuffer(data)).to.be.true;
+                expect(Buffer.isBuffer(browserify)).to.be.true;
               })
               it('should calculate the correct hash when multiple updates are called', function() {
                 var browserify = crypto.createHash(algo).update('Test').update('123').digest('hex');
@@ -213,7 +213,7 @@ describe('Crypto', function() {
               })
               it('should calculate the correct hmac when no digest is passed', function() {
                 var browserify = crypto.createHmac(algo, 'boo').update('Test123').digest();
-                expect(Buffer.isBuffer(data)).to.be.true;
+                expect(Buffer.isBuffer(browserify)).to.be.true;
               })
               it('should calculate the correct hmac when multiple updates are called', function() {
                 var browserify = crypto.createHmac(algo, 'boo').update('Test').update('123').digest('hex');
@@ -251,7 +251,7 @@ describe('Crypto', function() {
                 [0, 1, 2, 4, 16, 256, 1024].forEach(function(len) {
                   var rand = crypto.randomBytes(len);
                   expect(rand).to.have.length(len);
-                  expect(Buffer.isBuffer(data)).to.be.true;
+                  expect(Buffer.isBuffer(rand)).to.be.true;
                 });
             })
 
