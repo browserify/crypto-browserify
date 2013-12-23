@@ -2,6 +2,7 @@ var nodecrypto = require('crypto')
   , crypto = require('../')
   , fs = require('fs')
   , path = require('path')
+  , sinon = require('sinon')
   , expect = require('expect.js');
 
 describe('Crypto', function() {
@@ -262,6 +263,24 @@ describe('Crypto', function() {
                 expect(data).to.be.a(Buffer);
                 done();
               })
+            })
+
+            it('should use HTML5 Crypto API when available', function() {
+              if(typeof window !== 'undefined' && (window.crypto || window.Crypto))
+              {
+                var html5crypto = window.crypto || window.Crypto;
+                var spy = sinon.spy(html5crypto, 'getRandomValues');
+                crypto.randomBytes(16);
+                expect(spy.called).to.be.true;
+                html5crypto.getRandomValues.restore();
+              }
+              else
+              {
+                var spy = sinon.spy(Math, 'random');
+                crypto.randomBytes(16);
+                expect(spy.called).to.be.true;
+                Math.random.restore();
+              }
             })
         })
     })
