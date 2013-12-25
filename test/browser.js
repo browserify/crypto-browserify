@@ -266,7 +266,10 @@ describe('Crypto', function() {
             })
 
             it('should use HTML5 Crypto API when available', function() {
-              if(typeof window !== 'undefined' && (window.crypto || window.Crypto))
+              var globcrypto;
+              if(typeof window !== 'undefined' 
+                 && (globcrypto = (window.crypto || window.Crypto))
+                 && globcrypto.getRandomValues)
               {
                 var html5crypto = window.crypto || window.Crypto;
                 var spy = sinon.spy(html5crypto, 'getRandomValues');
