@@ -1,9 +1,11 @@
-var nodecrypto = require('crypto')
-  , crypto = require('../')
-  , fs = require('fs')
+var fs = require('fs')
   , path = require('path')
   , sinon = require('sinon')
-  , expect = require('expect.js');
+  , expect = require('expect.js')
+  , blanket = require('blanket')();
+
+var nodecrypto = require('crypto')
+  , crypto = require('../');
 
 describe('Crypto', function() {
     it('should expose a createHash function', function() {

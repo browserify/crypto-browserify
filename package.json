@@ -9,24 +9,32 @@
     "url": "git://github.com/dominictarr/crypto-browserify.git"
   },
   "scripts": {
-    "test": "mocha --require expect.js --reporter spec test/node.js"
+    "test": "mocha --require expect.js --reporter spec test/node.js",
+    "coveralls": "mocha --reporter mocha-lcov-reporter test/node.js | coveralls"
   },
   "engines": {
     "node": "*"
   },
-  "dependencies": {},
   "devDependencies": {
     "mocha": "~1.16.1",
-    "expect.js": "LearnBoost/expect.js",
-    "sinon": "~1.7.3"
+    "expect.js": "latest",
+    "sinon": "~1.7.3",
+    "mocha-lcov-reporter": "0.0.1",
+    "blanket": "~1.1.6",
+    "coveralls": "~2.6.1"
+  },
+  "config": {
+    "blanket": {
+      "pattern": ""
+    }
   },
   "testling": {
     "files": "test/browser.js",
     "harness": "mocha",
     "browsers": [
-      "ie/8..latest",
+      "ie/7..latest",
       "chrome/20..latest",
-      "firefox/10..latest",
+      "firefox/17..latest",
       "safari/latest",
       "opera/11.0..latest",
       "iphone/6",
