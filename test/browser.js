@@ -99,7 +99,7 @@ describe('Crypto', function() {
               })
               it('should use Buffer as the default digest', function() {
                 var browserify = crypto.createHash(algo).update('Test123').digest();
-                expect(Buffer.isBuffer(browserify)).to.be.true;
+                expect(Buffer.isBuffer(browserify)).to.be.ok();
               })
               it('should calculate the correct hash when multiple updates are called', function() {
                 var browserify = crypto.createHash(algo).update('Test').update('123').digest('hex');
@@ -214,7 +214,7 @@ describe('Crypto', function() {
               })
               it('should calculate the correct hmac when no digest is passed', function() {
                 var browserify = crypto.createHmac(algo, 'boo').update('Test123').digest();
-                expect(Buffer.isBuffer(browserify)).to.be.true;
+                expect(Buffer.isBuffer(browserify)).to.be.ok();
               })
               it('should calculate the correct hmac when multiple updates are called', function() {
                 var browserify = crypto.createHmac(algo, 'boo').update('Test').update('123').digest('hex');
@@ -252,7 +252,7 @@ describe('Crypto', function() {
                 [0, 1, 2, 4, 16, 256, 1024].forEach(function(len) {
                   var rand = crypto.randomBytes(len);
                   expect(rand).to.have.length(len);
-                  expect(Buffer.isBuffer(rand)).to.be.true;
+                  expect(Buffer.isBuffer(rand)).to.be.ok();
                 });
             })
 
@@ -260,7 +260,7 @@ describe('Crypto', function() {
               crypto.randomBytes(16, function(err, data) {
                 expect(err).to.be(null);
                 expect(data).to.have.length(16);
-                expect(Buffer.isBuffer(data)).to.be.true;
+                expect(Buffer.isBuffer(data)).to.be.ok();
                 done();
               })
             })
@@ -271,14 +271,14 @@ describe('Crypto', function() {
                 var html5crypto = window.crypto || window.Crypto;
                 var spy = sinon.spy(html5crypto, 'getRandomValues');
                 crypto.randomBytes(16);
-                expect(spy.called).to.be.true;
+                expect(spy.called).to.be.ok();
                 html5crypto.getRandomValues.restore();
               }
               else
               {
                 var spy = sinon.spy(Math, 'random');
                 crypto.randomBytes(16);
-                expect(spy.called).to.be.true;
+                expect(spy.called).to.be.ok();
                 Math.random.restore();
               }
             })
