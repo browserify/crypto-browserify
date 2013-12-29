@@ -5,6 +5,7 @@ var sha256 = require('./lib/hash/sha256')
 var md4 = require('./lib/hash/md4')
 var md5 = require('./lib/hash/md5')
 var rng = require('./lib/rng/rng')
+var dh = require('./lib/exchange/dh')
 
 var algorithms = {
   sha1: sha,
@@ -81,6 +82,9 @@ exports.randomBytes = function(size, callback) {
     return new Buffer(rng(size))
   }
 }
+exports.createDiffieHellman = dh.DiffieHellman;
+exports.createDiffieHellmanGroup = dh.DiffieHellmanGroup;
+exports.getDiffieHellman = dh.DiffieHellmanGroup;
 
 function each(a, f) {
   for(var i in a)
@@ -95,7 +99,6 @@ each(['createCredentials'
 , 'createDecipheriv'
 , 'createSign'
 , 'createVerify'
-, 'createDiffieHellman'
 , 'pbkdf2'], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
