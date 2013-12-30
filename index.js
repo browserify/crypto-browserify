@@ -1,12 +1,18 @@
 var Buffer = require('buffer').Buffer
-var sha = require('./sha')
-var sha256 = require('./sha256')
-var rng = require('./rng')
-var md5 = require('./md5')
+var sha = require('./lib/hash/sha')
+var sha224 = require('./lib/hash/sha224')
+var sha256 = require('./lib/hash/sha256')
+var md4 = require('./lib/hash/md4')
+var md5 = require('./lib/hash/md5')
+var pbkdf2 = require('./lib/hash/pbkdf2')
+var rng = require('./lib/rng/rng')
+var dh = require('./lib/exchange/dh')
 
 var algorithms = {
   sha1: sha,
+  sha224: sha224,
   sha256: sha256,
+  md4: md4,
   md5: md5
 }
 
@@ -33,7 +39,7 @@ function hmac(fn, key, data) {
 }
 
 function hash(alg, key) {
-  alg = alg || 'sha1'
+  if(!alg) throw new Error('Must give hashtype string as argument')
   var fn = algorithms[alg]
   var bufs = []
   var length = 0
@@ -65,16 +71,23 @@ function error () {
 }
 
 exports.createHash = function (alg) { return hash(alg) }
-exports.createHmac = function (alg, key) { return hash(alg, key) }
+exports.createHmac = function (alg, key) { if(!key) throw new TypeError('Not a buffer'); return hash(alg, key) }
 exports.randomBytes = function(size, callback) {
+  if(typeof(size) != 'number' || size < 0) throw new TypeError('Argument #1 must be number > 0');
+
   if (callback && callback.call) {
     try {
-      callback.call(this, undefined, new Buffer(rng(size)))
+      callback.call(this, null, new Buffer(rng(size)))
     } catch (err) { callback(err) }
   } else {
     return new Buffer(rng(size))
   }
 }
+
+exports.createDiffieHellman = dh.DiffieHellman;
+exports.createDiffieHellmanGroup = dh.DiffieHellmanGroup;
+exports.getDiffieHellman = dh.DiffieHellmanGroup;
+exports.pbkdf2Sync = pbkdf2.pbkdf2Sync;
 
 function each(a, f) {
   for(var i in a)
@@ -88,9 +101,7 @@ each(['createCredentials'
 , 'createDecipher'
 , 'createDecipheriv'
 , 'createSign'
-, 'createVerify'
-, 'createDiffieHellman'
-, 'pbkdf2'], function (name) {
+, 'createVerify'], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
   }
