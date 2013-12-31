@@ -3,12 +3,12 @@ var test = require("tape")
 var crypto = require('crypto')
 var cryptoB = require('../')
 
-function assertSame (fn) {
+function assertSame (fn, name) {
   test(fn.name, function (t) {
     t.plan(1)
     fn(crypto, function (err, expected) {
       fn(cryptoB, function (err, actual) {
-        t.equal(actual, expected)
+        t.equal(actual, expected, name)
         t.end()
       })
     })
@@ -17,7 +17,7 @@ function assertSame (fn) {
 
 assertSame(function sha1 (crypto, cb) {
   cb(null, crypto.createHash('sha1').update('hello', 'utf-8').digest('hex'))
-})
+}, 'sha1 same as node\'s sha1("hello")')
 
 assertSame(function md5(crypto, cb) {
   cb(null, crypto.createHash('md5').update('hello', 'utf-8').digest('hex'))
