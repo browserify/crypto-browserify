@@ -15,12 +15,10 @@
     "node": "*"
   },
   "dependencies": {
-    "tape": "~2.3.2",
-    "sha.js": "~1.2.1"
+    "sha.js": "1.2.1"
   },
   "devDependencies": {
-    "brfs": "~0.0.8",
-    "tape": "~1.0.4"
+    "tape": "~2.3.2"
   },
   "testling": {
     "files": "test/browser.js",
