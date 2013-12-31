@@ -9,13 +9,14 @@
     "url": "git://github.com/dominictarr/crypto-browserify.git"
   },
   "scripts": {
-    "test": "node test/node.js"
+    "test": "set -e; for t in test/*.js; do node $t; done"
   },
   "engines": {
     "node": "*"
   },
   "dependencies": {
-    "tape": "~2.3.2"
+    "tape": "~2.3.2",
+    "sha.js": "~1.2.1"
   },
   "devDependencies": {
     "brfs": "~0.0.8",
