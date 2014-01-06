@@ -21,13 +21,13 @@ algorithms.forEach(function (algorithm) {
         })
     });
 
-//    assertSame(algorithm + ' with raw binary', function (crypto, cb) {
-//        var seed = 'hellø';
-//        for (var i = 0; i < 1000; i++) {
-//            seed = crypto.createHash(algorithm).update(new Buffer(seed)).digest('binary');
-//        }
-//        cb(null, crypto.createHash(algorithm).update(new Buffer(seed)).digest('hex'));
-//    });
+    assertSame(algorithm + ' with raw binary', function (crypto, cb) {
+        var seed = 'hellø';
+        for (var i = 0; i < 1000; i++) {
+            seed = crypto.createHash(algorithm).update(new Buffer(seed)).digest('binary');
+        }
+        cb(null, crypto.createHash(algorithm).update(new Buffer(seed)).digest('hex'));
+    });
 
     assertSame(algorithm + ' empty string', function (crypto, cb) {
         cb(null, crypto.createHash(algorithm).update('').digest('hex'));
