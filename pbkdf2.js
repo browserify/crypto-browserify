@@ -19,7 +19,7 @@ module.exports = function (createHmac, exports) {
     })
   }
 
-  exports.pbkdf2Sync = function(password, salt, iterations, keylen) {
+  exports.pbkdf2Sync = function(key, salt, iterations, keylen) {
     if('number' !== typeof iterations)
       throw new TypeError('Iterations not a number')
     if(iterations < 0)
@@ -28,6 +28,17 @@ module.exports = function (createHmac, exports) {
       throw new TypeError('Key length not a number')
     if(keylen < 0)
       throw new TypeError('Bad key length')
+
+    //stretch key to the correct length that hmac wants it,
+    //otherwise this will happen every time hmac is called
+    //twice per iteration.
+    var key = !Buffer.isBuffer(key) ? new Buffer(key) : key
+
+    if(key.length > blocksize) {
+      key = createHash(alg).update(key).digest()
+    } else if(key.length < blocksize) {
+      key = Buffer.concat([key, zeroBuffer], blocksize)
+    }
 
     var HMAC;
     var cplen, p = 0, i = 1, itmp = new Buffer(4), digtmp;
@@ -47,14 +58,14 @@ module.exports = function (createHmac, exports) {
           itmp[2] = (i >> 8) & 0xff;
           itmp[3] = i & 0xff;
 
-          HMAC = createHmac('sha1', password);
+          HMAC = createHmac('sha1', key);
           HMAC.update(salt)
           HMAC.update(itmp);
         digtmp = HMAC.digest();
         digtmp.copy(out, p, 0, cplen);
 
         for(var j = 1; j < iterations; j++) {
-          HMAC = createHmac('sha1', password);
+          HMAC = createHmac('sha1', key);
           HMAC.update(digtmp);
           digtmp = HMAC.digest();
           for(var k = 0; k < cplen; k++) {
