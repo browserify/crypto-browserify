@@ -29,6 +29,11 @@ function each(a, f) {
     f(a[i], i)
 }
 
+var p = require('./pbkdf2')(exports.createHmac)
+exports.pbkdf2 = p.pbkdf2
+exports.pbkdf2Sync = p.pbkdf2Sync
+
+
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 each(['createCredentials'
 , 'createCipher'
@@ -38,7 +43,7 @@ each(['createCredentials'
 , 'createSign'
 , 'createVerify'
 , 'createDiffieHellman'
-, 'pbkdf2'], function (name) {
+], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
   }
