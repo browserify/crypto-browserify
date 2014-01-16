@@ -1,5 +1,7 @@
 // Original code adapted from Robert Kieffer.
 // details at https://github.com/broofa/node-uuid
+
+
 (function() {
   var _global = this;
 
@@ -7,7 +9,7 @@
 
   // NOTE: Math.random() does not guarantee "cryptographic quality"
   mathRNG = function(size) {
-    var bytes = new Array(size);
+    var bytes = new Buffer(size);
     var r;
 
     for (var i = 0, r; i < size; i++) {
@@ -20,7 +22,7 @@
 
   if (_global.crypto && crypto.getRandomValues) {
     whatwgRNG = function(size) {
-      var bytes = new Uint8Array(size);
+      var bytes = new Buffer(size); //in browserify, this is an extended Uint8Array
       crypto.getRandomValues(bytes);
       return bytes;
     }
