@@ -3,32 +3,14 @@ var createHash = require('./create-hash')
 var blocksize = 64
 var zeroBuffer = new Buffer(blocksize); zeroBuffer.fill(0)
 
-function hmac(fn, key, data) {
-  if(!Buffer.isBuffer(key)) key = new Buffer(key)
-  if(!Buffer.isBuffer(data)) data = new Buffer(data)
+module.exports = Hmac
 
-  if(key.length > blocksize) {
-    key = fn(key)
-  } else if(key.length < blocksize) {
-    key = Buffer.concat([key, zeroBuffer], blocksize)
-  }
+function Hmac (alg, key) {
+  if(!(this instanceof Hmac)) return new Hmac(alg, key)
+  this._opad = opad
+  this._alg = alg
 
-  var ipad = new Buffer(blocksize), opad = new Buffer(blocksize)
-  for(var i = 0; i < blocksize; i++) {
-    ipad[i] = key[i] ^ 0x36
-    opad[i] = key[i] ^ 0x5C
-  }
-
-  var hash = fn(Buffer.concat([ipad, data]))
-  return fn(Buffer.concat([opad, hash]))
-}
-
-
-module.exports = createHmac
-
-function createHmac (alg, key) {
-  if(!Buffer.isBuffer(key)) key = new Buffer(key)
-//  if(!Buffer.isBuffer(data)) data = new Buffer(data)
+  key = this._key = !Buffer.isBuffer(key) ? new Buffer(key) : key
 
   if(key.length > blocksize) {
     key = createHash(alg).update(key).digest()
@@ -36,16 +18,24 @@ function createHmac (alg, key) {
     key = Buffer.concat([key, zeroBuffer], blocksize)
   }
 
-  var ipad = new Buffer(blocksize), opad = new Buffer(blocksize)
+  var ipad = this._ipad = new Buffer(blocksize)
+  var opad = this._opad = new Buffer(blocksize)
+
   for(var i = 0; i < blocksize; i++) {
     ipad[i] = key[i] ^ 0x36
     opad[i] = key[i] ^ 0x5C
   }
-  hash = createHash(alg).update(ipad)//.update(data)
-  var digest = hash.digest
-  hash.digest = function (enc) {
-    var h = digest.call(hash)
-    return createHash(alg).update(opad).update(h).digest(enc)
-  }
-  return hash
+
+  this._hash = createHash(alg).update(ipad)
 }
+
+Hmac.prototype.update = function (data, enc) {
+  this._hash.update(data, enc)
+  return this
+}
+
+Hmac.prototype.digest = function (enc) {
+  var h = this._hash.digest()
+  return createHash(this._alg).update(this._opad).update(h).digest(enc)
+}
+
