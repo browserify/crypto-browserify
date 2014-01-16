@@ -23,6 +23,11 @@ function toConstructor (fn) {
   }
 }
 
+var pool = {
+  sha1: [],
+  sha256: []
+}
+
 module.exports = function (alg) {
   if(algs[alg]) return new algs[alg]()
   return createHash(alg)
