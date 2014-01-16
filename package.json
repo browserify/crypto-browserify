@@ -10,7 +10,9 @@
   },
   "scripts": {
     "test": "mocha --require expect.js --reporter spec test/node.js",
-    "coveralls": "mocha --reporter mocha-lcov-reporter test/node.js | coveralls"
+    "coveralls": "mocha --reporter mocha-lcov-reporter test/node.js | coveralls",
+    "docs": "",
+    "benchmark": "node support/benchmark.js > docs/benchmark.md"
   },
   "engines": {
     "node": "*"
@@ -24,7 +26,9 @@
     "sinon": "~1.7.3",
     "mocha-lcov-reporter": "0.0.1",
     "blanket": "~1.1.6",
-    "coveralls": "~2.6.1"
+    "coveralls": "~2.6.1",
+    "benchmark": "~1.0.0",
+    "ejs": "~0.8.5"
   },
   "config": {
     "blanket": {
