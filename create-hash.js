@@ -1,7 +1,5 @@
-
+var createHash = require('sha.js')
 var algs = {
-  sha1   : require('sha.js/sha1'),
-  sha256 : require('sha.js/sha256'),
   md5    : toConstructor(require('./md5'))
 }
 
@@ -26,5 +24,6 @@ function toConstructor (fn) {
 }
 
 module.exports = function (alg) {
-  return new algs[alg]()
+  if(algs[alg]) return new algs[alg]()
+  return createHash(alg)
 }
