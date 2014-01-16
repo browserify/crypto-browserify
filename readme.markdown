@@ -13,6 +13,8 @@ Here is the subset that is currently implemented:
 
 * createHash (sha1, sha256, md5)
 * createHmac (sha1, sha256, md5)
+* pbkdf2
+* pbkdf2Sync
 * randomBytes
 
 ## TODO
