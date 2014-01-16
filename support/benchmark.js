@@ -48,7 +48,7 @@ HashBenchmark.add('Node SHA256', function() {
 })
 
 HashBenchmark.on('complete', function() {
-  console.log(ejs.render(fs.readFileSync('benchmark.tpl.ejs').toString(), {results: this}));
+  console.log(ejs.render(fs.readFileSync('support/benchmark.tpl.ejs').toString(), {results: this}));
 })
 
 HashBenchmark.run();

@@ -3,8 +3,8 @@ Benchmarks
 This document gives an overview of the speed of crypto-browserify compared to Node.js's OpenSSL bindings. 
 
 {{ for(var i = 0; i < results.length; i++) { }}
-### {{- results[i].name }}
-{{- results[i].hz }} iterations/s
+#### {{- results[i].name }}
+{{- results[i].hz.toFixed(1) }} iterations/s
 {{ } }}
 
 *last run {{- new Date().toDateString() }}*
