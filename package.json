@@ -15,7 +15,7 @@
     "node": "*"
   },
   "dependencies": {
-    "sha.js": "2.1.0"
+    "sha.js": "2.1.1"
   },
   "devDependencies": {
     "tape": "~2.3.2"
