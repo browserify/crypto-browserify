@@ -11,8 +11,8 @@ var zeroBuffer = new Buffer(blocksize); zeroBuffer.fill(0)
 module.exports = function (createHmac, exports) {
   exports = exports || {}
 
-  exports.pbkdf2 = function(password, salt, iterations, keylen, callback) {
-    if('function' !== typeof callback)
+  exports.pbkdf2 = function(password, salt, iterations, keylen, cb) {
+    if('function' !== typeof cb)
       throw new Error('No callback provided to pbkdf2');
     setTimeout(function () {
       cb(null, exports.pbkdf2Sync(password, salt, iterations, keylen))
