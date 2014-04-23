@@ -15,7 +15,7 @@ module.exports = function (createHmac, exports) {
     if('function' !== typeof callback)
       throw new Error('No callback provided to pbkdf2');
     setTimeout(function () {
-      cb(null, exports.pbkdf2(password, salt, iterations, keylen))
+      cb(null, exports.pbkdf2Sync(password, salt, iterations, keylen))
     })
   }
 
