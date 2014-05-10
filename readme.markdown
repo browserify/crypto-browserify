@@ -11,7 +11,7 @@ in pure javascript so that it can run in the browser.
 
 Here is the subset that is currently implemented:
 
-* createHash (sha1, sha256, md5)
+* createHash (sha1, sha256, md5, rmd160)
 * createHmac (sha1, sha256, md5)
 * pbkdf2
 * pbkdf2Sync
@@ -29,8 +29,8 @@ The highest priority unimplemented features are
 
 ## contributions
 
-If you are interested in writing a feature, please create implement as a new module,
-which will be incorperated into crypto-browserify as a dependency.
+If you are interested in writing a feature, please implement as a new module,
+which will be incorporated into crypto-browserify as a dependency.
 
 All deps must be compatible with node's crypto
 (generate example inputs and outputs with node,

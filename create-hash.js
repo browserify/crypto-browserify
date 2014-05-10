@@ -1,6 +1,7 @@
 var createHash = require('sha.js')
 
 var md5 = toConstructor(require('./md5'))
+var rmd160 = toConstructor(require('ripemd160'))
 
 function toConstructor (fn) {
   return function () {
@@ -24,5 +25,6 @@ function toConstructor (fn) {
 
 module.exports = function (alg) {
   if('md5' === alg) return new md5()
+  if('rmd160' === alg) return new rmd160()
   return createHash(alg)
 }
