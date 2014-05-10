@@ -2,7 +2,7 @@ var assertSame = require('./util').same
 var fs = require('fs')
 var test = require('tape')
 
-var algorithms = ['sha1', 'sha256', 'md5'];
+var algorithms = ['sha1', 'sha256', 'md5', 'rmd160'];
 var encodings = [/*'binary',*/ 'hex', 'base64'];
 
 
