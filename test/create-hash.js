@@ -1,4 +1,3 @@
-var assertSame = require('./util').same
 var fs = require('fs')
 var test = require('tape')
 
