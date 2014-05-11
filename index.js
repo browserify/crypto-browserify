@@ -29,6 +29,11 @@ function each(a, f) {
     f(a[i], i)
 }
 
+exports.getHashes = function () {
+  return ['sha1', 'sha256', 'md5', 'rmd160']
+
+}
+
 var p = require('./pbkdf2')(exports.createHmac)
 exports.pbkdf2 = p.pbkdf2
 exports.pbkdf2Sync = p.pbkdf2Sync
