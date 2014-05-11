@@ -3,8 +3,6 @@
 // Licensed under LGPL v3
 // Copyright (c) 2013 jduncanator
 
-var Buffer = require('buffer').Buffer
-
 var blocksize = 64
 var zeroBuffer = new Buffer(blocksize); zeroBuffer.fill(0)
 
