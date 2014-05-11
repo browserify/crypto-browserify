@@ -1,4 +1,3 @@
-var Buffer = require('buffer').Buffer;
 var intSize = 4;
 var zeroBuffer = new Buffer(intSize); zeroBuffer.fill(0);
 var chrsz = 8;
