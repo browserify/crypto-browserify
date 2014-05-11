@@ -1,12 +1,20 @@
 
 var tape = require('tape')
-var pbkdf2 = require('../').pbkdf2
-var crypto = require('crypto')
+var pbkdf2Sync = require('../').pbkdf2Sync
+
+var vectors = require('hash-test-vectors/pbkdf2')
 
 tape('pbkdf2', function (t) {
-  pbkdf2('hello', 'salt', 1000, 20, function (err, key) {
-    if(err) throw err
-    t.deepEqual(key.toString('hex'), crypto.pbkdf2Sync('hello', 'salt', 1000, 20).toString('hex'))
-    t.end()
+  vectors.forEach(function (input) {
+    var key = pbkdf2Sync(input.password, input.salt, input.iterations, input.length)
+
+    if(key.toString('hex') !== input.sha1)
+      console.log(input)
+
+    t.equal(key.toString('hex'), input.sha1)
+
+
   })
+
+  t.end()
 })
