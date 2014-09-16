@@ -29,7 +29,7 @@ function each(a, f) {
 }
 
 exports.getHashes = function () {
-  return ['sha1', 'sha256', 'md5', 'rmd160']
+  return ['sha1', 'sha256', 'sha512', 'md5', 'rmd160']
 
 }
 

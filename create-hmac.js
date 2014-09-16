@@ -1,7 +1,7 @@
 var createHash = require('./create-hash')
 
-var blocksize = 64
-var zeroBuffer = new Buffer(blocksize); zeroBuffer.fill(0)
+var zeroBuffer = new Buffer(128)
+zeroBuffer.fill(0)
 
 module.exports = Hmac
 
@@ -9,6 +9,8 @@ function Hmac (alg, key) {
   if(!(this instanceof Hmac)) return new Hmac(alg, key)
   this._opad = opad
   this._alg = alg
+
+  var blocksize = (alg === 'sha512') ? 128 : 64
 
   key = this._key = !Buffer.isBuffer(key) ? new Buffer(key) : key
 
