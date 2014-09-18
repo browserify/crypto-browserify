@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "ripemd160": "0.2.0",
-    "sha.js": "2.1.8"
+    "sha.js": "2.2.6"
   },
   "devDependencies": {
     "tape": "~2.3.2",
