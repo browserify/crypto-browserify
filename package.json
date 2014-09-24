@@ -15,6 +15,7 @@
     "node": "*"
   },
   "dependencies": {
+    "pbkdf2-compat": "2.0.0",
     "ripemd160": "0.2.0",
     "sha.js": "2.2.6"
   },
