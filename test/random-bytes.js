@@ -4,11 +4,11 @@ var crypto = require('../')
 test('randomBytes', function (t) {
     t.plan(5);
     t.equal(crypto.randomBytes(10).length, 10);
-    t.ok(crypto.randomBytes(10) instanceof Buffer);
+    t.ok(Buffer.isBuffer(crypto.randomBytes(10)))
     crypto.randomBytes(10, function(ex, bytes) {
         t.error(ex);
         t.equal(bytes.length, 10);
-        t.ok(bytes instanceof Buffer);
+        t.ok(Buffer.isBuffer(bytes))
         t.end();
   });
 });
@@ -30,7 +30,7 @@ test('randomBytes seem random', function (t) {
 
   var expected = 256/2
   var smean = Math.sqrt(mean)
-
+  console.log(expected - smean, mean, expected + smean)
   t.ok(mean < expected + smean)
   t.ok(mean > expected - smean)
 
