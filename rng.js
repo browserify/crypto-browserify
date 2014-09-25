@@ -12,7 +12,7 @@
        * See https://developer.mozilla.org/en-US/docs/Web/API/window.crypto.getRandomValues
        */
     
-      _crypto.getRandomValues
+      _crypto.getRandomValues(bytes);
       return bytes;
     }
     else if (_crypto.randomBytes) {
