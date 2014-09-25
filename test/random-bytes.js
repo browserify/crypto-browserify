@@ -30,7 +30,8 @@ test('randomBytes seem random', function (t) {
 
   var expected = 256/2
   var smean = Math.sqrt(mean)
-  console.log(expected - smean, mean, expected + smean)
+  //console.log doesn't work right on testling, *grumble grumble*
+  console.log(JSON.stringify([expected - smean, mean, expected + smean]))
   t.ok(mean < expected + smean)
   t.ok(mean > expected - smean)
 
