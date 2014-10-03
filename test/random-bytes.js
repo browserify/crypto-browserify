@@ -1,6 +1,19 @@
 var test = require('tape')
 var crypto = require('../')
 
+test('get error message', function (t) {
+
+  try {
+    var b = crypto.randomBytes(10)
+    t.ok(Buffer.isBuffer(b))
+    t.end()
+  } catch (err) {
+    t.ok(/not supported/.test(err.message), '"not supported"  is in error message')
+    t.end()
+  }
+
+})
+
 test('randomBytes', function (t) {
     t.plan(5);
     t.equal(crypto.randomBytes(10).length, 10);
