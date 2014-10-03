@@ -4,7 +4,7 @@
     try { return require(r) } catch (_) { }
   }
   _crypto = (
-    g.crypto || g.msCrypto || foolBrowserify('crypto')
+    g.crypto || g.msCrypto || foolBrowserify('crypto') || {}
   )
   module.exports = function(size) {
     // Modern Browsers
