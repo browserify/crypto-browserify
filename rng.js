@@ -1,10 +1,7 @@
 (function() {
   var g = ('undefined' === typeof window ? global : window) || {}
-  var foolBrowserify = function (r) {
-    try { return require(r) } catch (_) { }
-  }
   _crypto = (
-    g.crypto || g.msCrypto || foolBrowserify('crypto') || {}
+    g.crypto || g.msCrypto || require('crypto')
   )
   module.exports = function(size) {
     // Modern Browsers

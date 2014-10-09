@@ -34,5 +34,8 @@
     ]
   },
   "optionalDependencies": {},
+  "browser": {
+    "crypto": false
+  },
   "license": "MIT"
 }
