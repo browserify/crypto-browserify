@@ -16,14 +16,14 @@ Here is the subset that is currently implemented:
 * pbkdf2
 * pbkdf2Sync
 * randomBytes
+* createCipher (aes)
+* createDecipher (aes)
 
 ## TODO
 
 The highest priority unimplemented features are
 
 * createDiffieHelman
-* createCipher (aes)
-* createDecipher (aes)
 * createSign (rsa)
 * createVerify (rsa)
 
