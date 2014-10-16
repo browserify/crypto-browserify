@@ -18,7 +18,7 @@
     "pbkdf2-compat": "2.0.1",
     "ripemd160": "0.2.0",
     "sha.js": "2.2.6",
-    "browserify-aes": "0.2.0"
+    "browserify-aes": "0.2.1"
   },
   "devDependencies": {
     "tape": "~2.3.2",
