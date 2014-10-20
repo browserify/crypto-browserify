@@ -1,4 +1,4 @@
-var pbkdf2Export = require('pbkdf2-compat').__pbkdf2Export
+var pbkdf2Export = require('pbkdf2-compat/pbkdf2')
 
 module.exports = function (crypto, exports) {
   exports = exports || {}
