@@ -36,12 +36,11 @@ var p = require('./pbkdf2')(exports)
 exports.pbkdf2 = p.pbkdf2
 exports.pbkdf2Sync = p.pbkdf2Sync
 require('browserify-aes/inject')(exports, module.exports);
-
+require('diffie-hellman/inject')(exports, module.exports);
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 each(['createCredentials'
 , 'createSign'
 , 'createVerify'
-, 'createDiffieHellman'
 ], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')

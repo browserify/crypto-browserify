@@ -18,12 +18,12 @@ Here is the subset that is currently implemented:
 * randomBytes
 * createCipher (aes)
 * createDecipher (aes)
+* createDiffieHelman
 
 ## TODO
 
 The highest priority unimplemented features are
 
-* createDiffieHelman
 * createSign (rsa)
 * createVerify (rsa)
 
