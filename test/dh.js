@@ -2,7 +2,7 @@ var test = require('tape');
 var crypto = require('../');
 test('diffie-hellman mod groups', function (t) {
   [
-     'modp1', 'modp2', 'modp5', 'modp14', 'modp15', 'modp16'/*, 'modp17', 'modp18'*/
+     'modp1', 'modp2', 'modp5', 'modp14', 'modp15', 'modp16', 'modp17', 'modp18'
   ].forEach(function (mod) {
     t.test(mod, function (t){
       t.plan(3);
