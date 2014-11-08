@@ -9,7 +9,7 @@
     "url": "git://github.com/dominictarr/crypto-browserify.git"
   },
   "scripts": {
-    "test": "set -e; for t in test/*.js; do node $t; done"
+    "test": "set -e; for t in test/node/*.js test/*.js; do node $t; done"
   },
   "engines": {
     "node": "*"
