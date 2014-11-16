@@ -19,7 +19,7 @@
     "ripemd160": "0.2.0",
     "sha.js": "2.2.6",
     "browserify-aes": "0.4.0",
-    "diffie-hellman": "2.1.0"
+    "diffie-hellman": "2.2.0"
   },
   "devDependencies": {
     "tape": "~2.3.2",
