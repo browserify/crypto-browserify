@@ -9,7 +9,6 @@ var createHash = require('../create-hash')
 
 algorithms.forEach(function (algorithm) {
   test('test ' + algorithm + ' against test vectors', function (t) {
-
     vectors.forEach(function (obj, i) {
       var input = new Buffer(obj.input, 'base64')
       var node = obj[algorithm]
@@ -25,7 +24,14 @@ algorithms.forEach(function (algorithm) {
           t.equal(js, node, algorithm + '(testVector['+i+'], '+encoding+') == ' + node)
         })
     });
-
+    vectors.forEach(function (obj, i) {
+      var input = new Buffer(obj.input, 'base64')
+      var node = obj[algorithm]
+      var hash = createHash(algorithm);
+      hash.end(input)
+      var js = hash.read().toString('hex')
+      t.equal(js, node, algorithm + '(testVector['+i+']) == ' + node)
+    })
     t.end()
   })
 });
