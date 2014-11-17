@@ -18,6 +18,19 @@ algorithms.forEach(function (alg) {
     t.end()
   })
 
+  test('hmac('+alg+')', function (t) {
+    vectors.forEach(function (input, i) {
+      var hmac = createHmac(alg, new Buffer(input.key, 'hex'))
+
+      hmac.end(input.data, 'hex')
+      var output = hmac.read()
+
+      output = input.truncate ? output.slice(0, input.truncate) : output
+      t.equal(output.toString('hex'), input[alg])
+    })
+    t.end()
+  })
+
 })
 
 

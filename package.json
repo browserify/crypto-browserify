@@ -2,23 +2,25 @@
   "author": "Dominic Tarr <dominic.tarr@gmail.com> (dominictarr.com)",
   "name": "crypto-browserify",
   "description": "partial implementation of crypto for the browser",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "homepage": "https://github.com/dominictarr/crypto-browserify",
   "repository": {
     "type": "git",
     "url": "git://github.com/dominictarr/crypto-browserify.git"
   },
   "scripts": {
-    "test": "set -e; for t in test/*.js; do node $t; done"
+    "test": "set -e; for t in test/node/*.js test/*.js; do node $t; done"
   },
   "engines": {
     "node": "*"
   },
   "dependencies": {
+    "browserify-aes": "0.6.0",
+    "browserify-sign": "2.4.0",
     "pbkdf2-compat": "2.0.1",
     "ripemd160": "0.2.0",
     "sha.js": "2.2.6",
-    "browserify-aes": "0.6.0"
+    "diffie-hellman": "2.2.0"
   },
   "devDependencies": {
     "tape": "~2.3.2",

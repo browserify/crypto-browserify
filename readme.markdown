@@ -18,14 +18,13 @@ Here is the subset that is currently implemented:
 * randomBytes
 * createCipher (aes)
 * createDecipher (aes)
+* createDiffieHellman
 
-## TODO
+## todo
 
-The highest priority unimplemented features are
+these features from node's `crypto` are still unimplemented.
 
-* createDiffieHelman
-* createSign (rsa)
-* createVerify (rsa)
+* createCredentials
 
 ## contributions
 
