@@ -1,12 +1,15 @@
 var createHash = require('./create-hash')
-
+var Transform = require('stream').Transform;
+var inherits = require('util').inherits
 var zeroBuffer = new Buffer(128)
 zeroBuffer.fill(0)
 
 module.exports = Hmac
-
+inherits(Hmac, Transform)
 function Hmac (alg, key) {
   if(!(this instanceof Hmac)) return new Hmac(alg, key)
+
+  Transform.call(this)
   this._opad = opad
   this._alg = alg
 
@@ -32,12 +35,31 @@ function Hmac (alg, key) {
 }
 
 Hmac.prototype.update = function (data, enc) {
-  this._hash.update(data, enc)
+  this.write(data, enc)
   return this
 }
 
-Hmac.prototype.digest = function (enc) {
+Hmac.prototype._transform = function (data, _, next) {
+  this._hash.update(data)
+  next()
+}
+
+Hmac.prototype._flush = function (next) {
   var h = this._hash.digest()
-  return createHash(this._alg).update(this._opad).update(h).digest(enc)
+  this.push(createHash(this._alg).update(this._opad).update(h).digest())
+  next()
+}
+
+Hmac.prototype.digest = function (enc) {
+  this.end()
+  var outData = new Buffer('')
+  var chunk
+  while ((chunk = this.read())) {
+    outData = Buffer.concat([outData, chunk])
+  }
+  if (enc) {
+    outData = outData.toString(enc)
+  }
+  return outData
 }
 
