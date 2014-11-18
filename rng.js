@@ -1,8 +1,6 @@
 'use strict';
 (function() {
   var g = ('undefined' === typeof window ? global : window) || {}
-  _crypto = (
-  var g = ('undefined' === typeof window ? global : window) || {}
   var _crypto = (
     g.crypto || g.msCrypto || require('crypto')
   )
