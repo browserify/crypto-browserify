@@ -1,5 +1,5 @@
 (function() {
-  var g = ('undefined' === typeof window ? global : window) || {}
+  var g = ('undefined' === typeof window ? global : window) || {},
   _crypto = (
     g.crypto || g.msCrypto || require('crypto')
   )
