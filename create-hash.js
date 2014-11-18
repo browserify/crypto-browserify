@@ -1,3 +1,4 @@
+'use strict';
 var createHash = require('sha.js')
 
 var md5 = require('./md5')

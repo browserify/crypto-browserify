@@ -1,3 +1,4 @@
+'use strict';
 var createHash = require('./create-hash')
 var Transform = require('stream').Transform;
 var inherits = require('util').inherits

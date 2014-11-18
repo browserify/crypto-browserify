@@ -1,3 +1,4 @@
+'use strict';
 var pbkdf2Export = require('pbkdf2-compat/pbkdf2')
 
 module.exports = function (crypto, exports) {

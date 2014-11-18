@@ -1,3 +1,4 @@
+'use strict';
 var rng = require('./rng')
 
 function error () {

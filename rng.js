@@ -1,6 +1,9 @@
+'use strict';
 (function() {
-  var g = ('undefined' === typeof window ? global : window) || {},
+  var g = ('undefined' === typeof window ? global : window) || {}
   _crypto = (
+  var g = ('undefined' === typeof window ? global : window) || {}
+  var _crypto = (
     g.crypto || g.msCrypto || require('crypto')
   )
   module.exports = function(size) {
@@ -10,7 +13,7 @@
       /* This will not work in older browsers.
        * See https://developer.mozilla.org/en-US/docs/Web/API/window.crypto.getRandomValues
        */
-    
+
       _crypto.getRandomValues(bytes);
       return bytes;
     }
