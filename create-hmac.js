@@ -14,7 +14,8 @@ function Hmac (alg, key) {
   this._opad = opad
   this._alg = alg
 
-  var blocksize = (alg === 'sha512') ? 128 : 64
+  console.log(alg)
+  var blocksize = (alg === 'sha512' || alg === 'sha384') ? 128 : 64
 
   key = this._key = !Buffer.isBuffer(key) ? new Buffer(key) : key
 
