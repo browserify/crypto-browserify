@@ -11,8 +11,8 @@ in pure javascript so that it can run in the browser.
 
 Here is the subset that is currently implemented:
 
-* createHash (sha1, sha256, sha512, md5, rmd160)
-* createHmac (sha1, sha256, sha512, md5)
+* createHash (sha1, sha224, sha256, sha384, sha512, md5, rmd160)
+* createHmac (sha1, sha224, sha256, sha384, sha512, md5, rmd160)
 * pbkdf2
 * pbkdf2Sync
 * randomBytes
