@@ -30,7 +30,7 @@ function each(a, f) {
 }
 
 exports.getHashes = function () {
-  return ['sha1', 'sha256', 'sha512', 'md5', 'rmd160']
+  return ['sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'md5', 'rmd160']
 }
 
 var p = require('./pbkdf2')(exports)
