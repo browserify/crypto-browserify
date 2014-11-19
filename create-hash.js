@@ -4,8 +4,12 @@ var md5 = require('./md5')
 var rmd160 = require('ripemd160')
 var Transform = require('stream').Transform;
 var inherits = require('util').inherits
+var hashAliases = {
+  'ripemd160': 'rmd160'
+}
 
 module.exports = function (alg) {
+  alg = (hashAliases[alg] || alg).toLowerCase()
   if('md5' === alg) return new HashNoConstructor(md5)
   if('rmd160' === alg) return new HashNoConstructor(rmd160)
   return new Hash(createHash(alg))
