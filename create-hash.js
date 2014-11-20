@@ -9,7 +9,8 @@ var hashAliases = {
 }
 
 module.exports = function (alg) {
-  alg = (hashAliases[alg] || alg).toLowerCase()
+  alg = alg.toLowerCase()
+  alg = (hashAliases[alg] || alg)
   if('md5' === alg) return new HashNoConstructor(md5)
   if('rmd160' === alg) return new HashNoConstructor(rmd160)
   return new Hash(createHash(alg))
