@@ -19,6 +19,9 @@ Here is the subset that is currently implemented:
 * createCipher (aes)
 * createDecipher (aes)
 * createDiffieHellman
+* createSign (rsa, ecdsa)
+* createVerify (rsa, ecdsa)
+
 
 ## todo
 
