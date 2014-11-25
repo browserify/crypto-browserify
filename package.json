@@ -20,8 +20,8 @@
     "browserify-sign": "2.4.0",
     "pbkdf2-compat": "2.0.1",
     "ripemd160": "0.2.0",
-    "sha.js": "2.2.6",
-    "diffie-hellman": "2.2.0"
+    "diffie-hellman": "2.2.0",
+    "sha.js": "~2.2.7"
   },
   "devDependencies": {
     "tape": "~2.3.2",
