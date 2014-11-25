@@ -1,7 +1,7 @@
 
 var test = require('tape')
 
-var algorithms = require('../').getHashes()
+var algorithms = ['sha1', 'sha256', 'sha512', 'md5', 'rmd160']
 var vectors = require('hash-test-vectors/hmac')
 var createHmac = require('../create-hmac')
 
