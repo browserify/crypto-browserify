@@ -19,12 +19,14 @@ Here is the subset that is currently implemented:
 * createCipher (aes)
 * createDecipher (aes)
 * createDiffieHellman
+* createECDH (secp256k1)
 
 ## todo
 
 these features from node's `crypto` are still unimplemented.
 
 * createCredentials
+* publicEncrypt/privateDecrypt
 
 ## contributions
 
