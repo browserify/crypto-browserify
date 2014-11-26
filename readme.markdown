@@ -21,13 +21,14 @@ Here is the subset that is currently implemented:
 * createDiffieHellman
 * createSign (rsa, ecdsa)
 * createVerify (rsa, ecdsa)
-
+* createECDH (secp256k1)
 
 ## todo
 
 these features from node's `crypto` are still unimplemented.
 
 * createCredentials
+* publicEncrypt/privateDecrypt
 
 ## contributions
 

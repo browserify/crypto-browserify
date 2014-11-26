@@ -39,10 +39,11 @@ exports.pbkdf2Sync = p.pbkdf2Sync
 require('browserify-aes/inject')(exports, module.exports);
 require('browserify-sign/inject')(module.exports, exports);
 require('diffie-hellman/inject')(exports, module.exports);
+require('create-ecdh/inject')(module.exports, exports);
 
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 each([
-  'createCredentials',
+  'createCredentials', 'publicEncrypt', 'privateDecrypt'
 ], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
