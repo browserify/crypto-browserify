@@ -11,6 +11,9 @@ test('ciphers', function (t) {
       var out = [];
       out.push(decrypter.update(crypter.update(data)));
       out.push(decrypter.update(crypter.final()));
+      if (cipher.indexOf('gcm') > -1) {
+        decrypter.setAuthTag(crypter.getAuthTag());
+      }
       out.push(decrypter.final());
       t.equals(data.toString('hex'), Buffer.concat(out).toString('hex'));
     });
