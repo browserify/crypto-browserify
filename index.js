@@ -28,9 +28,9 @@ function each(a, f) {
   for(var i in a)
     f(a[i], i)
 }
-
+var hashes = ['sha1', 'sha256', 'sha512', 'md5', 'rmd160'].concat(Object.keys(require('browserify-sign/algos')))
 exports.getHashes = function () {
-  return ['sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'md5', 'rmd160']
+  return hashes;
 }
 
 var p = require('./pbkdf2')(exports)

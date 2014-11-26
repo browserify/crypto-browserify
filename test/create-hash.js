@@ -1,7 +1,7 @@
 var fs = require('fs')
 var test = require('tape')
 
-var algorithms = require('../').getHashes()
+var algorithms = ['sha1', 'sha256', 'sha512', 'md5', 'rmd160']
 var encodings = [/*'binary',*/ 'hex', 'base64'];
 var vectors = require('hash-test-vectors')
 
