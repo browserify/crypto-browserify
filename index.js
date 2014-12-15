@@ -1,5 +1,6 @@
 'use strict';
-var rng = require('./rng')
+var rng = exports.rng = require('./rng')
+var prng = exports.prng = require('./prng');
 
 function error () {
   var m = [].slice.call(arguments).join(' ')
@@ -21,6 +22,15 @@ exports.randomBytes = function(size, callback) {
     } catch (err) { callback(err) }
   } else {
     return new Buffer(rng(size))
+  }
+}
+exports.pseudoRandomBytes = function(size, callback) {
+  if (callback && callback.call) {
+    try {
+      callback.call(this, undefined, new Buffer(prng(size)))
+    } catch (err) { callback(err) }
+  } else {
+    return new Buffer(prng(size))
   }
 }
 
