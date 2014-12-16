@@ -18,19 +18,19 @@ exports.createHmac = require('./create-hmac')
 exports.randomBytes = function(size, callback) {
   if (callback && callback.call) {
     try {
-      callback.call(this, undefined, new Buffer(rng(size)))
+      callback.call(this, undefined, rng(size))
     } catch (err) { callback(err) }
   } else {
-    return new Buffer(rng(size))
+    return rng(size)
   }
 }
 exports.pseudoRandomBytes = function(size, callback) {
   if (callback && callback.call) {
     try {
-      callback.call(this, undefined, new Buffer(prng(size)))
+      callback.call(this, undefined, prng(size))
     } catch (err) { callback(err) }
   } else {
-    return new Buffer(prng(size))
+    return prng(size)
   }
 }
 
