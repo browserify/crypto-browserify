@@ -22,13 +22,13 @@ Here is the subset that is currently implemented:
 * createSign (rsa, ecdsa)
 * createVerify (rsa, ecdsa)
 * createECDH (secp256k1)
+* publicEncrypt/privateDecrypt (rsa)
 
 ## todo
 
 these features from node's `crypto` are still unimplemented.
 
 * createCredentials
-* publicEncrypt/privateDecrypt
 
 ## contributions
 
