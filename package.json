@@ -19,7 +19,7 @@
     "browserify-aes": "0.6.0",
     "create-ecdh": "1.0.0",
     "diffie-hellman": "2.2.0",
-    "browserify-sign": "2.5.1",
+    "browserify-sign": "2.6.0",
     "pbkdf2-compat": "2.0.1",
     "ripemd160": "0.2.0",
     "sha.js": "2.3.0"
