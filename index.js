@@ -61,3 +61,5 @@ each([
     error('sorry,', name, 'is not implemented yet')
   }
 })
+
+exports.DEFAULT_ENCODING = 'buffer' // provided for API consistency, but not currently used.
