@@ -1,5 +1,6 @@
 'use strict';
-var rng = require('./rng')
+var rng = exports.rng = require('./rng')
+var prng = exports.prng = require('./prng');
 
 function error () {
   var m = [].slice.call(arguments).join(' ')
@@ -17,10 +18,19 @@ exports.createHmac = require('./create-hmac')
 exports.randomBytes = function(size, callback) {
   if (callback && callback.call) {
     try {
-      callback.call(this, undefined, new Buffer(rng(size)))
+      callback.call(this, undefined, rng(size))
     } catch (err) { callback(err) }
   } else {
-    return new Buffer(rng(size))
+    return rng(size)
+  }
+}
+exports.pseudoRandomBytes = function(size, callback) {
+  if (callback && callback.call) {
+    try {
+      callback.call(this, undefined, prng(size))
+    } catch (err) { callback(err) }
+  } else {
+    return prng(size)
   }
 }
 
