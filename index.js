@@ -43,7 +43,19 @@ require('create-ecdh/inject')(module.exports, exports);
 
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 each([
-  'createCredentials', 'publicEncrypt', 'privateDecrypt'
+  'createCredentials', 
+  'publicEncrypt',
+  'privateDecrypt',
+  'getCiphers',
+  'Verify',
+  'Sign',
+  'Decipher',
+  'Decipheriv',
+  'Cipheriv',
+  'Cipher',
+  'Hmac', 
+  'Hash',
+  'Credentials'
 ], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
