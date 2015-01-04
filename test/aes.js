@@ -19,3 +19,7 @@ test('ciphers', function (t) {
     });
   });
 });
+test('getCiphers', function (t) {
+  t.plan(1);
+  t.ok(crypto.getCiphers().length, 'get ciphers returns an array');
+});
