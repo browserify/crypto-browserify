@@ -16,7 +16,7 @@
     "node": "*"
   },
   "dependencies": {
-    "browserify-aes": "0.7.2",
+    "browserify-aes": "0.7.3",
     "create-ecdh": "1.0.1",
     "diffie-hellman": "2.2.2",
     "browserify-sign": "2.7.1",
