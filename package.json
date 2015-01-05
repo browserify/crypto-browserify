@@ -16,10 +16,10 @@
     "node": "*"
   },
   "dependencies": {
-    "browserify-aes": "0.8.0",
+    "browserify-aes": "0.8.1",
     "create-ecdh": "1.0.1",
     "diffie-hellman": "2.2.2",
-    "browserify-sign": "2.7.1",
+    "browserify-sign": "2.7.2",
     "pbkdf2-compat": "2.0.1",
     "public-encrypt": "1.1.0",
     "ripemd160": "0.2.0",
