@@ -1,10 +1,8 @@
 # crypto-browserify
 
-A (partial) port of node's `crypto` module to the browser.
+A port of node's `crypto` module to the browser.
 
 [![travis](https://secure.travis-ci.org/dominictarr/crypto-browserify.png?branch=master)](https://travis-ci.org/dominictarr/crypto-browserify)
-
-[![browser support](http://ci.testling.com/dominictarr/crypto-browserify.png)](http://ci.testling.com/dominictarr/crypto-browserify)
 
 The goal of this module is to reimplement node's crypto module,
 in pure javascript so that it can run in the browser.
@@ -16,6 +14,7 @@ Here is the subset that is currently implemented:
 * pbkdf2
 * pbkdf2Sync
 * randomBytes
+* pseudoRandomBytes
 * createCipher (aes)
 * createDecipher (aes)
 * createDiffieHellman
