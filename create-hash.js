@@ -4,7 +4,7 @@ var createHash = require('sha.js')
 var md5 = require('./md5')
 var rmd160 = require('ripemd160')
 var Transform = require('stream').Transform;
-var inherits = require('util').inherits
+var inherits = require('inherits')
 
 module.exports = function (alg) {
   if('md5' === alg) return new HashNoConstructor(md5)
