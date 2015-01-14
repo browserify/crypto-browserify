@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "browserify-aes": "0.8.1",
-    "create-ecdh": "1.0.3",
-    "diffie-hellman": "2.2.3",
     "browserify-sign": "2.8.0",
+    "create-ecdh": "1.0.3",
+    "create-hash": "^1.0.1",
+    "create-hmac": "^1.0.0",
+    "diffie-hellman": "2.2.3",
     "inherits": "^2.0.1",
     "pbkdf2-compat": "2.0.1",
-    "public-encrypt": "1.1.2",
-    "ripemd160": "0.2.0",
-    "sha.js": "2.3.6"
+    "public-encrypt": "1.1.2"
   },
   "devDependencies": {
     "tape": "~2.3.2",

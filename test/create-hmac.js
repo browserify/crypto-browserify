@@ -1,9 +1,9 @@
 
 var test = require('tape')
 
-var algorithms = ['sha1', 'sha256', 'sha512', 'md5', 'rmd160']
+var algorithms = ['sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'md5', 'rmd160']
 var vectors = require('hash-test-vectors/hmac')
-var createHmac = require('../create-hmac')
+var createHmac = require('../').createHmac
 
 algorithms.forEach(function (alg) {
 

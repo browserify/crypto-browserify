@@ -11,9 +11,9 @@ function error () {
     ].join('\n'))
 }
 
-exports.createHash = exports.Hash = require('./create-hash')
+exports.createHash = exports.Hash = require('create-hash')
 
-exports.createHmac = exports.Hmac = require('./create-hmac')
+exports.createHmac = exports.Hmac = require('create-hmac')
 
 exports.randomBytes = function(size, callback) {
   if (callback && callback.call) {
