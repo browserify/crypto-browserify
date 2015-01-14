@@ -6,7 +6,8 @@ test('browserify-crypto has all of the node-crypto api', function (t) {
 
   for (var name in nodeCrypto) {
     if (nodeCrypto.hasOwnProperty(name)) {
-      t.ok(browserifyCrypto.hasOwnProperty(name), ' browserify-crypto has node-crypto api function ' + name)
+      t.ok(browserifyCrypto.hasOwnProperty(name), ' browserify-crypto has node-crypto api ' + name)
+      t.ok(typeof browserifyCrypto[name] === typeof nodeCrypto[name], ' browserify-crypto.' + name + ' is the same type as node-crypto.' + name);
     }
   }  
   t.end()
