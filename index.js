@@ -54,9 +54,21 @@ require('public-encrypt/inject')(module.exports, exports);
 
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 each([
-  'createCredentials'
+  'createCredentials', 
+  'Credentials',
+  'getCiphers',
+  'Verify',
+  'Sign',
+  'Decipher',
+  'Decipheriv',
+  'Cipheriv',
+  'Cipher',
+  'Hmac', 
+  'Hash'
 ], function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
   }
 })
+
+exports.DEFAULT_ENCODING = 'buffer' // provided for API consistency, but not currently used.
