@@ -1,5 +1,5 @@
 var fs = require('fs')
-var test = require('tape')
+var test = require('prova')
 
 var algorithms = ['sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'md5', 'rmd160']
 var encodings = [/*'binary',*/ 'hex', 'base64'];
