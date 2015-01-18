@@ -1,11 +1,11 @@
 var test = require('tape')
 var crypto = require('../')
-
-var randomBytesFunctions = ['randomBytes', 'pseudoRandomBytes'];
+var randomBytes = require('randombytes')
+var randomBytesFunctions = [['randomBytes',randomBytes], ['pseudoRandomBytes', crypto.pseudoRandomBytes]];
 for (var idx in randomBytesFunctions) {
   // Both randomBytes and pseudoRandomBytes should provide the same interface
-  var randomBytesName = randomBytesFunctions[idx];
-  var randomBytes = crypto[randomBytesName]
+  var randomBytesName = randomBytesFunctions[idx][0];
+  var randomBytes = randomBytesFunctions[idx][1];
   test('get error message', function (t) {
   
     try {

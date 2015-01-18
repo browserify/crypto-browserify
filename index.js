@@ -1,5 +1,5 @@
 'use strict';
-var rng = exports.rng = require('./rng')
+exports.randomBytes = exports.rng = require('randombytes')
 var prng = exports.prng = require('./prng');
 
 function error () {
@@ -15,19 +15,6 @@ exports.createHash = exports.Hash = require('create-hash')
 
 exports.createHmac = exports.Hmac = require('create-hmac')
 
-exports.randomBytes = function(size, callback) {
-  if (callback && callback.call) {
-    var res;
-    try {
-      res = rng(size)
-    } catch (err) {
-      return callback(err)
-    }
-    callback.call(this, undefined, res)
-  } else {
-    return rng(size)
-  }
-}
 exports.pseudoRandomBytes = function(size, callback) {
   if (callback && callback.call) {
     var res;
