@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('prova');
 var crypto = require('../');
 test('ciphers', function (t) {
   crypto.listCiphers().forEach(function (cipher) {

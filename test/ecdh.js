@@ -1,7 +1,7 @@
 var mods = [
    'secp256k1'
 ];
-var test = require('tape');
+var test = require('prova');
 var crypto = require('../');
 test('createECDH', function (t) {
 mods.forEach(function (mod) {
