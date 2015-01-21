@@ -1,5 +1,5 @@
 var test = require('tape');
-var crypto = require('../');
+var crypto = require('diffie-hellman/browser');
 test('diffie-hellman mod groups', function (t) {
   [
      'modp1', 'modp2', 'modp5', 'modp14', 'modp15', 'modp16'

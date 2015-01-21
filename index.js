@@ -44,8 +44,18 @@ var aes = require('browserify-aes');
   exports[key] = aes[key];
 })
 
+var dh = require('diffie-hellman');
+[
+  'DiffieHellmanGroup',
+  'createDiffieHellmanGroup',
+  'getDiffieHellman',
+  'createDiffieHellman',
+  'DiffieHellman'
+].forEach(function (key) {
+  exports[key] = dh[key];
+})
+
 require('browserify-sign/inject')(module.exports, exports);
-require('diffie-hellman/inject')(exports, module.exports);
 require('create-ecdh/inject')(module.exports, exports);
 require('public-encrypt/inject')(module.exports, exports);
 
