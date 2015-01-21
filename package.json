@@ -21,7 +21,7 @@
     "create-ecdh": "1.0.3",
     "create-hash": "^1.1.0",
     "create-hmac": "^1.1.0",
-    "diffie-hellman": "2.2.3",
+    "diffie-hellman": "^3.0.1",
     "inherits": "^2.0.1",
     "pbkdf2-compat": "2.0.1",
     "public-encrypt": "1.1.2",
