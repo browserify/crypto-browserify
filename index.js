@@ -1,6 +1,6 @@
 'use strict';
-exports.randomBytes = exports.rng = require('randombytes')
-var prng = exports.prng = require('./prng');
+
+exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = require('randombytes')
 
 function error () {
   var m = [].slice.call(arguments).join(' ')
@@ -14,20 +14,6 @@ function error () {
 exports.createHash = exports.Hash = require('create-hash')
 
 exports.createHmac = exports.Hmac = require('create-hmac')
-
-exports.pseudoRandomBytes = function(size, callback) {
-  if (callback && callback.call) {
-    var res;
-    try {
-      res = prng(size)
-    } catch (err) {
-      return callback(err)
-    }
-    callback.call(this, undefined, res)
-  } else {
-    return prng(size)
-  }
-}
 
 function each(a, f) {
   for(var i in a)
