@@ -2,7 +2,7 @@
 
 A port of node's `crypto` module to the browser.
 
-[![travis](https://secure.travis-ci.org/dominictarr/crypto-browserify.png?branch=master)](https://travis-ci.org/dominictarr/crypto-browserify)
+[![travis](https://img.shields.io/travis/crypto-browserify/crypto-browserify/master.svg?style=flat)](https://travis-ci.org/crypto-browserify/crypto-browserify)
 
 The goal of this module is to reimplement node's crypto module,
 in pure javascript so that it can run in the browser.
