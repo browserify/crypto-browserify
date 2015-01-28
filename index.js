@@ -37,7 +37,7 @@ require('create-ecdh/inject')(module.exports, exports);
 require('public-encrypt/inject')(module.exports, exports);
 
 // the least I can do is make error messages for the rest of the node.js/crypto api.
-exports.createCredentials = function () {
+exports.createCredentials = function createCredentials() {
   throw new Error([
     'sorry, createCredentials is not implemented yet',
     'we accept pull requests',
