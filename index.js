@@ -41,6 +41,6 @@ exports.createCredentials = function createCredentials() {
   throw new Error([
     'sorry, createCredentials is not implemented yet',
     'we accept pull requests',
-    'http://github.com/dominictarr/crypto-browserify'
+    'https://github.com/crypto-browserify/crypto-browserify'
   ].join('\n'));
 };
