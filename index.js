@@ -24,7 +24,7 @@ exports.getHashes = function () {
   return hashes;
 }
 
-var p = require('./pbkdf2')(exports)
+var p = require('pbkdf2-compat')
 exports.pbkdf2 = p.pbkdf2
 exports.pbkdf2Sync = p.pbkdf2Sync
 
