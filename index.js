@@ -48,9 +48,7 @@ require('public-encrypt/inject')(module.exports, exports);
 
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 [
-  'createCredentials',
-  'privateEncrypt',
-  'publicDecrypt'
+  'createCredentials'
 ].forEach(function (name) {
   exports[name] = function () {
     throw new Error([
@@ -60,3 +58,5 @@ require('public-encrypt/inject')(module.exports, exports);
     ].join('\n'));
   }
 })
+
+exports.DEFAULT_ENCODING = 'buffer'; // added for api completeness, but not actually used
