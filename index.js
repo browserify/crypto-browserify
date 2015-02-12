@@ -43,8 +43,10 @@ var dh = require('diffie-hellman');
 })
 
 require('browserify-sign/inject')(module.exports, exports);
-require('create-ecdh/inject')(module.exports, exports);
-require('public-encrypt/inject')(module.exports, exports);
+
+exports.createECDH = require('create-ecdh');
+
+var publicEncrypt = require('public-encrypt');
 
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 [
