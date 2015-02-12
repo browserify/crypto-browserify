@@ -44,15 +44,22 @@ var dh = require('diffie-hellman');
 
 require('browserify-sign/inject')(module.exports, exports);
 
-exports.createECDH = require('create-ecdh');
+exports.createECDH = require('create-ecdh')
 
 var publicEncrypt = require('public-encrypt');
 
-// the least I can do is make error messages for the rest of the node.js/crypto api.
 [
-  'createCredentials',
+  'publicEncrypt',
   'privateEncrypt',
-  'publicDecrypt'
+  'publicDecrypt',
+  'privateDecrypt'
+].forEach(function (key) {
+  exports[key] = publicEncrypt[key];
+})
+
+// the least I can do is make error messages for the rest of the node.js/crypto api.
+;[
+  'createCredentials'
 ].forEach(function (name) {
   exports[name] = function () {
     throw new Error([

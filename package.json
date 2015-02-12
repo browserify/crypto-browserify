@@ -24,7 +24,7 @@
     "diffie-hellman": "^3.0.1",
     "inherits": "^2.0.1",
     "pbkdf2-compat": "^3.0.1",
-    "public-encrypt": "1.1.2",
+    "public-encrypt": "^2.0.0",
     "randombytes": "^2.0.0"
   },
   "devDependencies": {
