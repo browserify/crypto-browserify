@@ -42,7 +42,15 @@ var dh = require('diffie-hellman');
   exports[key] = dh[key];
 })
 
-require('browserify-sign/inject')(module.exports, exports);
+var sign = require('browserify-sign');
+[
+  'createSign',
+  'Sign',
+  'createVerify',
+  'Verify'
+].forEach(function (key) {
+  exports[key] = sign[key];
+})
 
 exports.createECDH = require('create-ecdh')
 
