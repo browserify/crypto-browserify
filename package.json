@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "browserify-aes": "^1.0.0",
-    "browserify-sign": "2.8.0",
+    "browserify-sign": "^3.0.1",
     "create-ecdh": "^2.0.0",
     "create-hash": "^1.1.0",
     "create-hmac": "^1.1.0",
