@@ -23,7 +23,7 @@
     "create-hmac": "^1.1.0",
     "diffie-hellman": "^3.0.1",
     "inherits": "^2.0.1",
-    "pbkdf2-compat": "^3.0.1",
+    "pbkdf2": "^3.0.3",
     "public-encrypt": "^2.0.0",
     "randombytes": "^2.0.0"
   },

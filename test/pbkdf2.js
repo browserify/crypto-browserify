@@ -1,6 +1,6 @@
 
 var tape = require('tape')
-var crypto = require('pbkdf2-compat/browser')
+var crypto = require('pbkdf2/browser')
 
 var vectors = require('hash-test-vectors/pbkdf2')
 
