@@ -13,7 +13,7 @@ var p = require('pbkdf2')
 exports.pbkdf2 = p.pbkdf2
 exports.pbkdf2Sync = p.pbkdf2Sync
 
-var aes = require('browserify-aes')
+var aes = require('browserify-cipher')
 ;[
   'Cipher',
   'createCipher',

@@ -1,5 +1,5 @@
 var test = require('tape')
-var crypto = require('browserify-aes/browser')
+var crypto = require('browserify-cipher/browser')
 var randomBytes = require('randombytes')
 
 test('ciphers', function (t) {
