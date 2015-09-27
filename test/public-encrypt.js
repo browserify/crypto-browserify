@@ -15,7 +15,6 @@ test('publicEncrypt/privateDecrypt', function (t) {
     // note encryption is ranomized so can't test to see if they encrypt the same
     t.equals(crypto1.privateDecrypt(rsa.private, new Buffer(encrypted, 'hex')).toString(), 'hello there I am a nice message', 'decrypt it properly')
     t.equals(crypto2.privateDecrypt(rsa.private, new Buffer(encrypted, 'hex')).toString(), 'hello there I am a nice message', 'decrypt it properly')
-
   })
   t.test('can round trip', function (t) {
     t.plan(2)
@@ -23,7 +22,6 @@ test('publicEncrypt/privateDecrypt', function (t) {
     // note encryption is ranomized so can't test to see if they encrypt the same
     t.equals(crypto1.privateDecrypt(rsa.private, crypto2.publicEncrypt(rsa.public, new Buffer(msg))).toString(), msg, 'round trip it')
     t.equals(crypto2.privateDecrypt(rsa.private, crypto1.publicEncrypt(rsa.public, new Buffer(msg))).toString(), msg, 'round trip it')
-
   })
 })
 
@@ -34,6 +32,5 @@ test('privateEncrypt/publicDecrypt', function (t) {
     // note encryption is ranomized so can't test to see if they encrypt the same
     t.equals(crypto1.publicDecrypt(rsa.public, crypto2.privateEncrypt(rsa.private, new Buffer(msg))).toString(), msg, 'round trip it')
     t.equals(crypto2.publicDecrypt(rsa.public, crypto1.privateEncrypt(rsa.private, new Buffer(msg))).toString(), msg, 'round trip it')
-
   })
 })

@@ -31,7 +31,6 @@ function testLib (name, createHmac) {
         })
         t.end()
       })
-
     })
   })
 }

@@ -37,6 +37,5 @@ function testLib (name, createHash) {
         t.end()
       })
     })
-
   })
 }

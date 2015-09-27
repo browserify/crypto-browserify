@@ -19,7 +19,6 @@ for (var randomBytesName in randomBytesFunctions) {
       t.ok(/not supported/.test(err.message), '"not supported"  is in error message')
       t.end()
     }
-
   })
 
   test(randomBytesName, function (t) {
@@ -38,7 +37,7 @@ for (var randomBytesName in randomBytesFunctions) {
     var L = 1000
     var b = randomBytes(L)
 
-    var mean = [].reduce.call(b, function (a, b) { return a + b}, 0) / L
+    var mean = [].reduce.call(b, function (a, b) { return a + b }, 0) / L
 
     // test that the random numbers are plausably random.
     // Math.random() will pass this, but this will catch
@@ -57,6 +56,5 @@ for (var randomBytesName in randomBytesFunctions) {
     t.ok(mean > expected - smean)
 
     t.end()
-
   })
 }
