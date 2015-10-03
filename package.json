@@ -12,7 +12,8 @@
     "prepublish": "npm ls && npm test",
     "standard": "standard",
     "test": "npm run standard && npm run unit",
-    "unit": "set -e; for t in test/node/*.js test/*.js; do node $t; done"
+    "unit": "node test/",
+    "browser": "zuul --browser-version $BROWSER_VERSION --browser-name $BROWSER_NAME -- test/index.js"
   },
   "engines": {
     "node": "*"
@@ -32,7 +33,8 @@
   "devDependencies": {
     "hash-test-vectors": "~1.3.2",
     "standard": "^5.0.2",
-    "tape": "~2.3.2"
+    "tape": "~2.3.2",
+    "zuul": "^3.6.0"
   },
   "optionalDependencies": {},
   "browser": {
