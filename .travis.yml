@@ -13,8 +13,6 @@ matrix:
     - node_js: 'iojs'
       env: TEST_SUITE=standard
     - node_js: 'iojs'
-      env: TEST_SUITE=browser
-    - node_js: 'iojs'
       env: TEST_SUITE=browser BROWSER_NAME=opera BROWSER_VERSION="11..latest"
     - node_js: 'iojs'
       env: TEST_SUITE=browser BROWSER_NAME=ie BROWSER_VERSION="9..latest"
