@@ -20,7 +20,7 @@
   "dependencies": {
     "browserify-cipher": "^1.0.0",
     "browserify-sign": "^3.0.1",
-    "create-ecdh": "crypto-browserify/create-ecdh#browser-field",
+    "create-ecdh": "crypto-browserify/createECDH#browser-field",
     "create-hash": "^1.1.0",
     "create-hmac": "^1.1.0",
     "diffie-hellman": "^3.0.1",
