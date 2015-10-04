@@ -18,7 +18,10 @@ function testLib (name, createHmac) {
           .update(input.data, 'hex').digest()
 
         output = input.truncate ? output.slice(0, input.truncate) : output
-        t.equal(output.toString('hex'), input[alg])
+        output = output.toString('hex')
+        if (output !== input[alg]) {
+          t.equal(output, input[alg])
+        }
         setTimeout(run, 0, i + 1)
       }
     })
@@ -36,7 +39,10 @@ function testLib (name, createHmac) {
         var output = hmac.read()
 
         output = input.truncate ? output.slice(0, input.truncate) : output
-        t.equal(output.toString('hex'), input[alg])
+        output = output.toString('hex')
+        if (output !== input[alg]) {
+          t.equal(output, input[alg])
+        }
         setTimeout(run, 0, i + 1)
       }
     })

@@ -24,20 +24,26 @@ function runTest (name, createHash, algorithm) {
       var input = new Buffer(obj.input, 'base64')
       var node = obj[algorithm]
       var js = createHash(algorithm).update(input).digest('hex')
-      t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node)
+      if (js !== node) {
+        t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node)
+      }
 
       encodings.forEach(function (encoding) {
         var input = new Buffer(obj.input, 'base64').toString(encoding)
         var node = obj[algorithm]
         var js = createHash(algorithm).update(input, encoding).digest('hex')
-        t.equal(js, node, algorithm + '(testVector[' + i + '], ' + encoding + ') == ' + node)
+        if (js !== node) {
+          t.equal(js, node, algorithm + '(testVector[' + i + '], ' + encoding + ') == ' + node)
+        }
       })
       input = new Buffer(obj.input, 'base64')
       node = obj[algorithm]
       var hash = createHash(algorithm)
       hash.end(input)
       js = hash.read().toString('hex')
-      t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node)
+      if (js !== node) {
+        t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node)
+      }
       setTimeout(run, 0, i + 1)
     }
   })
