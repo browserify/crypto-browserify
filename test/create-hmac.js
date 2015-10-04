@@ -8,18 +8,28 @@ testLib('create-hmac/browser', require('create-hmac/browser'))
 function testLib (name, createHmac) {
   algorithms.forEach(function (alg) {
     test(name + ' hmac(' + alg + ')', function (t) {
-      vectors.forEach(function (input, i) {
+      run(0)
+      function run (i) {
+        if (i >= vectors.length) {
+          return t.end()
+        }
+        var input = vectors[i]
         var output = createHmac(alg, new Buffer(input.key, 'hex'))
           .update(input.data, 'hex').digest()
 
         output = input.truncate ? output.slice(0, input.truncate) : output
         t.equal(output.toString('hex'), input[alg])
-      })
-      t.end()
+        setTimeout(run, 0, i + 1)
+      }
     })
 
     test('hmac(' + alg + ')', function (t) {
-      vectors.forEach(function (input, i) {
+      run(0)
+      function run (i) {
+        if (i >= vectors.length) {
+          return t.end()
+        }
+        var input = vectors[i]
         var hmac = createHmac(alg, new Buffer(input.key, 'hex'))
 
         hmac.end(input.data, 'hex')
@@ -27,8 +37,8 @@ function testLib (name, createHmac) {
 
         output = input.truncate ? output.slice(0, input.truncate) : output
         t.equal(output.toString('hex'), input[alg])
-      })
-      t.end()
+        setTimeout(run, 0, i + 1)
+      }
     })
   })
 }
