@@ -1,5 +1,8 @@
 var test = require('tape')
 var nodeCrypto = require('../')
+if (process.browser && typeof nodeCrypto === 'undefined') {
+  nodeCrypto = require('crypto')
+}
 var ourCrypto = require('browserify-sign/browser')
 
 var rsa = {

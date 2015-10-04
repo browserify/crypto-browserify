@@ -6,6 +6,9 @@ var mods = [
 ]
 var test = require('tape')
 var createECDH1 = require('../').createECDH
+if (process.browser && typeof createECDH1 !== 'function') {
+  createECDH1 = require('crypto').createECDH
+}
 var createECDH2 = require('create-ecdh/browser')
 
 mods.forEach(function (mod) {
