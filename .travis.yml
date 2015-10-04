@@ -17,9 +17,9 @@ matrix:
     - node_js: 'iojs'
       env: TEST_SUITE=browser BROWSER_NAME=ie BROWSER_VERSION="9..latest"
     - node_js: 'iojs'
-      env: TEST_SUITE=browser BROWSER_NAME=chrome BROWSER_VERSION="41..beta"
+      env: TEST_SUITE=browser BROWSER_NAME=chrome BROWSER_VERSION="44..beta"
     - node_js: 'iojs'
-      env: TEST_SUITE=browser BROWSER_NAME=firefox BROWSER_VERSION="36..latest"
+      env: TEST_SUITE=browser BROWSER_NAME=firefox BROWSER_VERSION="40..latest"
     - node_js: 'iojs'
       env: TEST_SUITE=browser BROWSER_NAME=ipad BROWSER_VERSION="8.2"
     - node_js: 'iojs'
