@@ -2,7 +2,7 @@
 
 A port of node's `crypto` module to the browser.
 
-[![travis](https://img.shields.io/travis/crypto-browserify/crypto-browserify/master.svg?style=flat)](https://travis-ci.org/crypto-browserify/crypto-browserify)
+[![Build Status](https://travis-ci.org/crypto-browserify/crypto-browserify.svg?branch=master)](https://travis-ci.org/crypto-browserify/crypto-browserify)
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/crypto-browserify.svg)](https://saucelabs.com/u/crypto-browserify)
 
