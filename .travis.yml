@@ -25,7 +25,7 @@ matrix:
     - node_js: '4'
       env: TEST_SUITE=browser BROWSER_NAME=safari BROWSER_VERSION="6..latest"
     - node_js: '4'
-      env: TEST_SUITE=browser BROWSER_NAME=android BROWSER_VERSION="4.4..latest"
+      env: TEST_SUITE=browser BROWSER_NAME=android BROWSER_VERSION="4.0..latest"
 script: "npm run-script $TEST_SUITE"
 env:
   global:
