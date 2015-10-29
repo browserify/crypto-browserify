@@ -8,34 +8,43 @@ testLib('createHash in crypto-browserify', require('../').createHash)
 testLib('create-hash/browser', require('create-hash/browser'))
 
 function testLib (name, createHash) {
-  test(name, function (t) {
-    algorithms.forEach(function (algorithm) {
-      t.test('test ' + algorithm + ' against test vectors', function (t) {
-        vectors.forEach(function (obj, i) {
-          var input = new Buffer(obj.input, 'base64')
-          var node = obj[algorithm]
-          var js = createHash(algorithm).update(input).digest('hex')
-          t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node)
-        })
+  algorithms.forEach(function (algorithm) {
+    runTest(name, createHash, algorithm)
+  })
+}
+function runTest (name, createHash, algorithm) {
+  test(name + ' test ' + algorithm + ' against test vectors', function (t) {
+    run(0)
+    function run (i) {
+      if (i >= vectors.length) {
+        return t.end()
+      }
+      var obj = vectors[i]
 
-        encodings.forEach(function (encoding) {
-          vectors.forEach(function (obj, i) {
-            var input = new Buffer(obj.input, 'base64').toString(encoding)
-            var node = obj[algorithm]
-            var js = createHash(algorithm).update(input, encoding).digest('hex')
-            t.equal(js, node, algorithm + '(testVector[' + i + '], ' + encoding + ') == ' + node)
-          })
-        })
-        vectors.forEach(function (obj, i) {
-          var input = new Buffer(obj.input, 'base64')
-          var node = obj[algorithm]
-          var hash = createHash(algorithm)
-          hash.end(input)
-          var js = hash.read().toString('hex')
-          t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node)
-        })
-        t.end()
+      var input = new Buffer(obj.input, 'base64')
+      var node = obj[algorithm]
+      var js = createHash(algorithm).update(input).digest('hex')
+      if (js !== node) {
+        t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node)
+      }
+
+      encodings.forEach(function (encoding) {
+        var input = new Buffer(obj.input, 'base64').toString(encoding)
+        var node = obj[algorithm]
+        var js = createHash(algorithm).update(input, encoding).digest('hex')
+        if (js !== node) {
+          t.equal(js, node, algorithm + '(testVector[' + i + '], ' + encoding + ') == ' + node)
+        }
       })
-    })
+      input = new Buffer(obj.input, 'base64')
+      node = obj[algorithm]
+      var hash = createHash(algorithm)
+      hash.end(input)
+      js = hash.read().toString('hex')
+      if (js !== node) {
+        t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node)
+      }
+      setTimeout(run, 0, i + 1)
+    }
   })
 }
