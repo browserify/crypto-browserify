@@ -25,6 +25,7 @@ Here is the subset that is currently implemented:
 * createECDH (secp256k1)
 * publicEncrypt/privateDecrypt (rsa)
 * privateEncrypt/publicDecrypt (rsa)
+* timingSafeEqual
 
 ## todo
 
