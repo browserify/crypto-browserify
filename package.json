@@ -40,5 +40,7 @@
   "browser": {
     "crypto": false
   },
-  "license": "MIT"
+  "license": "MIT",
+  "main": "index.js",
+  "files": []
 }
