@@ -40,5 +40,12 @@
   "browser": {
     "crypto": false
   },
+  "jspm": {
+    "map": {
+      "./index.js": {
+        "node": "@node/crypto"
+      }
+    }
+  },
   "license": "MIT"
 }
