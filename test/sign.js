@@ -56,4 +56,4 @@ function testit (keys, message, scheme) {
 }
 
 testit(rsa, new Buffer('rsa with sha256'), 'RSA-SHA256')
-testit(ec, new Buffer('ec with sha1'), 'ecdsa-with-SHA1')
+testit(ec, new Buffer('ec with sha1'), 'sha256')
