@@ -1,4 +1,3 @@
-
 require('./create-hash')
 require('./create-hmac')
 if (!process.browser) {
