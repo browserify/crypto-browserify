@@ -15,13 +15,9 @@ matrix:
     - node_js: '4'
       env: TEST_SUITE=browser BROWSER_NAME=chrome BROWSER_VERSION="-2..beta"
     - node_js: '4'
-<<<<<<< HEAD
       env: TEST_SUITE=browser BROWSER_NAME=firefox BROWSER_VERSION="-2..latest"
     - node_js: '4'
       env: TEST_SUITE=browser BROWSER_NAME=safari BROWSER_VERSION="7..latest"
-=======
-      env: TEST_SUITE=browser BROWSER_NAME=safari BROWSER_VERSION="5..latest"
->>>>>>> remove broken iphone
     - node_js: '4'
       env: TEST_SUITE=browser BROWSER_NAME=android BROWSER_VERSION="5.0..latest"
 script: "npm run-script $TEST_SUITE"
