@@ -17,13 +17,13 @@ test('timingSafeEqual', function (t) {
 
   t.throws(function () {
     timingSafeEqual(Buffer.from([1, 2, 3]), Buffer.from([1, 2]))
-  }, 'should throw when given buffers with different lengths')
+  }, /TypeError: Input buffers must have the same length/, 'should throw when given buffers with different lengths')
 
   t.throws(function () {
     timingSafeEqual('not a buffer', Buffer.from([1, 2]))
-  }, 'should throw if the first argument is not a buffer')
+  }, /TypeError: First argument must be a buffer/, 'should throw if the first argument is not a buffer')
 
   t.throws(function () {
     timingSafeEqual(Buffer.from([1, 2]), 'not a buffer')
-  }, 'should throw if the second argument is not a buffer')
+  }, /TypeError: Second argument must be a buffer/, 'should throw if the second argument is not a buffer')
 })
