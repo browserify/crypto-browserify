@@ -52,6 +52,8 @@ exports.privateEncrypt = publicEncrypt.privateEncrypt
 exports.publicDecrypt = publicEncrypt.publicDecrypt
 exports.privateDecrypt = publicEncrypt.privateDecrypt
 
+exports.timingSafeEqual = require('timing-safe-equal')
+
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 // ;[
 //   'createCredentials'
