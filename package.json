@@ -18,7 +18,7 @@
     "node": "*"
   },
   "dependencies": {
-    "browser-keygen": "^1.0.1",
+    "browser-keygen": "^1.0.4",
     "browserify-cipher": "^1.0.0",
     "browserify-sign": "^4.0.0",
     "create-ecdh": "^4.0.0",
