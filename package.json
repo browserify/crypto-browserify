@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "browserify-cipher": "^1.0.0",
-    "browserify-sign": "^4.0.0",
+    "browserify-sign": "^4.0.4",
     "create-ecdh": "^4.0.0",
     "create-hash": "^1.1.0",
     "create-hmac": "^1.1.0",
