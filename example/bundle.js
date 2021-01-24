@@ -433,17 +433,7 @@ require.define('/node_modules/crypto-browserify/index.js', function (require, mo
     }
   };
   // the least I can do is make error messages for the rest of the node.js/crypto api.
-  ['createCredentials',
-    'createHmac',
-    'createCypher',
-    'createCypheriv',
-    'createDecipher',
-    'createDecipheriv',
-    'createSign',
-    'createVerify',
-    'createDeffieHellman',
-    'pbkdf2',
-    'randomBytes'].forEach(function (name) {
+  ['createCredentials'].forEach(function (name) {
     exports[name] = function () {
       error('sorry,', name, 'is not implemented yet')
     }
