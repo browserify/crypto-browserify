@@ -5,23 +5,23 @@ var rsa = {
   'public': '2d2d2d2d2d424547494e20525341205055424c4943204b45592d2d2d2d2d0a4d49494242674b422f6779376d6a615767506546645659445a5752434139424e69763370506230657332372b464b593068737a4c614f773437457843744157700a4473483438545841667948425977424c67756179666b344c4749757078622b43474d62526f337845703043626659314a62793236543976476a524331666f48440a44554a4738347561526279487161663469367a74346756522b786c4145496a6b614641414b38634f6f58415431435671474c4c6c6a554363684c38506a61486a0a2f7972695a2f53377264776c49334c6e41427877776d4c726d522f7637315774706d4f2f614e47384e2b31706f2b5177616768546b79513539452f5a7641754f0a6b4657486f6b32712f523650594161326a645a397a696d3046714f502b6e6b5161454452624246426d4271547635664647666b32577341664b662f5247302f560a46642b5a654d353235315465547658483639356e6c53476175566c3941674d424141453d0a2d2d2d2d2d454e4420525341205055424c4943204b45592d2d2d2d2d0a'
 }
 var crypto2 = require('public-encrypt/browser')
-rsa.private = new Buffer(rsa.private, 'hex')
-rsa.public = new Buffer(rsa.public, 'hex')
+rsa.private = Buffer.from(rsa.private, 'hex')
+rsa.public = Buffer.from(rsa.public, 'hex')
 var encrypted = '0bcd6462ad7a563be2d42b0b73e0b0a163886304e7723b025f97605144fe1781e84acdc4031327d6bccd67fe13183e8fbdc8c5fe947b49d011ce3ebb08b11e83b87a77328ca57ee77cfdc78743b0749366643d7a21b2abcd4aa32dee9832938445540ee3007b7a70191c8dc9ff2ad76fe8dfaa5362d9d2c4b31a67b816d7b7970a293cb95bf3437a301bedb9f431b7075aa2f9df77b4385bea2a37982beda467260b384a58258b5eb4e36a0e0bf7dff83589636f5f97bf542084f0f76868c9f3f989a27fee5b8cd2bfee0bae1eae958df7c3184e5a40fda101196214f371606feca4330b221f30577804bbd4f61578a84e85dcd298849f509e630d275280'
 
 test('publicEncrypt/privateDecrypt', function (t) {
   t.test('can decrypt', function (t) {
     t.plan(2)
-    // note encryption is ranomized so can't test to see if they encrypt the same
-    t.equals(crypto1.privateDecrypt(rsa.private, new Buffer(encrypted, 'hex')).toString(), 'hello there I am a nice message', 'decrypt it properly')
-    t.equals(crypto2.privateDecrypt(rsa.private, new Buffer(encrypted, 'hex')).toString(), 'hello there I am a nice message', 'decrypt it properly')
+    // note encryption is randomized so can't test to see if they encrypt the same
+    t.equals(crypto1.privateDecrypt(rsa.private, Buffer.from(encrypted, 'hex')).toString(), 'hello there I am a nice message', 'decrypt it properly')
+    t.equals(crypto2.privateDecrypt(rsa.private, Buffer.from(encrypted, 'hex')).toString(), 'hello there I am a nice message', 'decrypt it properly')
   })
   t.test('can round trip', function (t) {
     t.plan(2)
     var msg = 'this is a message'
-    // note encryption is ranomized so can't test to see if they encrypt the same
-    t.equals(crypto1.privateDecrypt(rsa.private, crypto2.publicEncrypt(rsa.public, new Buffer(msg))).toString(), msg, 'round trip it')
-    t.equals(crypto2.privateDecrypt(rsa.private, crypto1.publicEncrypt(rsa.public, new Buffer(msg))).toString(), msg, 'round trip it')
+    // note encryption is randomized so can't test to see if they encrypt the same
+    t.equals(crypto1.privateDecrypt(rsa.private, crypto2.publicEncrypt(rsa.public, Buffer.from(msg))).toString(), msg, 'round trip it')
+    t.equals(crypto2.privateDecrypt(rsa.private, crypto1.publicEncrypt(rsa.public, Buffer.from(msg))).toString(), msg, 'round trip it')
   })
 })
 
@@ -29,8 +29,8 @@ test('privateEncrypt/publicDecrypt', function (t) {
   t.test('can round trip', function (t) {
     t.plan(2)
     var msg = 'this is a message'
-    // note encryption is ranomized so can't test to see if they encrypt the same
-    t.equals(crypto1.publicDecrypt(rsa.public, crypto2.privateEncrypt(rsa.private, new Buffer(msg))).toString(), msg, 'round trip it')
-    t.equals(crypto2.publicDecrypt(rsa.public, crypto1.privateEncrypt(rsa.private, new Buffer(msg))).toString(), msg, 'round trip it')
+    // note encryption is randomized so can't test to see if they encrypt the same
+    t.equals(crypto1.publicDecrypt(rsa.public, crypto2.privateEncrypt(rsa.private, Buffer.from(msg))).toString(), msg, 'round trip it')
+    t.equals(crypto2.publicDecrypt(rsa.public, crypto1.privateEncrypt(rsa.private, Buffer.from(msg))).toString(), msg, 'round trip it')
   })
 })
