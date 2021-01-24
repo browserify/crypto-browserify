@@ -1,17 +1,17 @@
-var test = require('tape')
-var crypto = require('browserify-cipher/browser')
-var randomBytes = require('pseudorandombytes')
+const test = require('tape')
+const crypto = require('browserify-cipher/browser')
+const randomBytes = require('pseudorandombytes')
 
 function runIt (i) {
   crypto.listCiphers().forEach(function (cipher) {
     test('run: ' + i, function (t) {
       t.test('ciphers: ' + cipher, function (t) {
         t.plan(1)
-        var data = randomBytes(562)
-        var password = randomBytes(20)
-        var crypter = crypto.createCipher(cipher, password)
-        var decrypter = crypto.createDecipher(cipher, password)
-        var out = []
+        const data = randomBytes(562)
+        const password = randomBytes(20)
+        const crypter = crypto.createCipher(cipher, password)
+        const decrypter = crypto.createDecipher(cipher, password)
+        const out = []
         out.push(decrypter.update(crypter.update(data)))
         out.push(decrypter.update(crypter.final()))
         if (cipher.indexOf('gcm') > -1) {
@@ -34,13 +34,13 @@ test('getCiphers', function (t) {
 
 test('through crypto browserify works', function (t) {
   t.plan(2)
-  var crypto = require('../')
-  var cipher = 'aes-128-ctr'
-  var data = randomBytes(562)
-  var password = randomBytes(20)
-  var crypter = crypto.createCipher(cipher, password)
-  var decrypter = crypto.createDecipher(cipher, password)
-  var out = []
+  const crypto = require('../')
+  const cipher = 'aes-128-ctr'
+  const data = randomBytes(562)
+  const password = randomBytes(20)
+  const crypter = crypto.createCipher(cipher, password)
+  const decrypter = crypto.createDecipher(cipher, password)
+  const out = []
   out.push(decrypter.update(crypter.update(data)))
   out.push(decrypter.update(crypter.final()))
   out.push(decrypter.final())

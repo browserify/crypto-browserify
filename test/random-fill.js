@@ -1,10 +1,10 @@
-var test = require('tape')
-var crypto = require('../')
-var Buffer = require('safe-buffer').Buffer
+const test = require('tape')
+const crypto = require('../')
+const Buffer = require('safe-buffer').Buffer
 
 test('get error message', function (t) {
   try {
-    var b = crypto.randomFillSync(Buffer.alloc(10))
+    const b = crypto.randomFillSync(Buffer.alloc(10))
     t.ok(Buffer.isBuffer(b))
     t.end()
   } catch (err) {
@@ -26,10 +26,10 @@ test('randomfill', function (t) {
 })
 
 test('seems random', function (t) {
-  var L = 1000
-  var b = crypto.randomFillSync(Buffer.alloc(L))
+  const L = 1000
+  const b = crypto.randomFillSync(Buffer.alloc(L))
 
-  var mean = [].reduce.call(b, function (a, b) {
+  const mean = [].reduce.call(b, function (a, b) {
     return a + b
   }, 0) / L
 
@@ -41,8 +41,8 @@ test('seems random', function (t) {
   // this doesn't check that the bytes are in a random *order*
   // but it's better than nothing.
 
-  var expected = 256 / 2
-  var smean = Math.sqrt(mean)
+  const expected = 256 / 2
+  const smean = Math.sqrt(mean)
 
   // console.log doesn't work right on testling, *grumble grumble*
   console.log(JSON.stringify([expected - smean, mean, expected + smean]))

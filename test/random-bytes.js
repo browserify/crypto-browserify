@@ -1,18 +1,18 @@
-var test = require('tape')
-var crypto = require('../')
+const test = require('tape')
+const crypto = require('../')
 
-var randomBytesFunctions = {
+const randomBytesFunctions = {
   randomBytes: require('randombytes'),
   pseudoRandomBytes: crypto.pseudoRandomBytes
 }
 
-for (var randomBytesName in randomBytesFunctions) {
+for (const randomBytesName in randomBytesFunctions) {
   // Both randomBytes and pseudoRandomBytes should provide the same interface
-  var randomBytes = randomBytesFunctions[randomBytesName]
+  const randomBytes = randomBytesFunctions[randomBytesName]
 
   test('get error message', function (t) {
     try {
-      var b = randomBytes(10)
+      const b = randomBytes(10)
       t.ok(Buffer.isBuffer(b))
       t.end()
     } catch (err) {
@@ -34,10 +34,10 @@ for (var randomBytesName in randomBytesFunctions) {
   })
 
   test(randomBytesName + ' seem random', function (t) {
-    var L = 1000
-    var b = randomBytes(L)
+    const L = 1000
+    const b = randomBytes(L)
 
-    var mean = [].reduce.call(b, function (a, b) { return a + b }, 0) / L
+    const mean = [].reduce.call(b, function (a, b) { return a + b }, 0) / L
 
     // test that the random numbers are plausably random.
     // Math.random() will pass this, but this will catch
@@ -47,8 +47,8 @@ for (var randomBytesName in randomBytesFunctions) {
     // this doesn't check that the bytes are in a random *order*
     // but it's better than nothing.
 
-    var expected = 256 / 2
-    var smean = Math.sqrt(mean)
+    const expected = 256 / 2
+    const smean = Math.sqrt(mean)
 
     // console.log doesn't work right on testling, *grumble grumble*
     console.log(JSON.stringify([expected - smean, mean, expected + smean]))
