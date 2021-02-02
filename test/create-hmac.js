@@ -14,7 +14,7 @@ function testLib (name, createHmac) {
           return t.end()
         }
         var input = vectors[i]
-        var output = createHmac(alg, new Buffer(input.key, 'hex'))
+        var output = createHmac(alg, Buffer.from(input.key, 'hex'))
           .update(input.data, 'hex').digest()
 
         output = input.truncate ? output.slice(0, input.truncate) : output
@@ -33,7 +33,7 @@ function testLib (name, createHmac) {
           return t.end()
         }
         var input = vectors[i]
-        var hmac = createHmac(alg, new Buffer(input.key, 'hex'))
+        var hmac = createHmac(alg, Buffer.from(input.key, 'hex'))
 
         hmac.end(input.data, 'hex')
         var output = hmac.read()

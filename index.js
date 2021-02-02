@@ -52,19 +52,6 @@ exports.privateEncrypt = publicEncrypt.privateEncrypt
 exports.publicDecrypt = publicEncrypt.publicDecrypt
 exports.privateDecrypt = publicEncrypt.privateDecrypt
 
-// the least I can do is make error messages for the rest of the node.js/crypto api.
-// ;[
-//   'createCredentials'
-// ].forEach(function (name) {
-//   exports[name] = function () {
-//     throw new Error([
-//       'sorry, ' + name + ' is not implemented yet',
-//       'we accept pull requests',
-//       'https://github.com/crypto-browserify/crypto-browserify'
-//     ].join('\n'))
-//   }
-// })
-
 var rf = require('randomfill')
 
 exports.randomFill = rf.randomFill

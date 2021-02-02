@@ -395,17 +395,16 @@ exports.createHash = function (alg) {
   }
 }
 // the least I can do is make error messages for the rest of the node.js/crypto api.
-;['createCredentials'
-, 'createHmac'
-, 'createCypher'
-, 'createCypheriv'
-, 'createDecipher'
-, 'createDecipheriv'
-, 'createSign'
-, 'createVerify'
-, 'createDeffieHellman',
-, 'pbkdf2',
-, 'randomBytes' ].forEach(function (name) {
+;['createCredentials',
+  'getCurves',
+  'randomFill',
+  'randomFillSync',
+  'scrypt',
+  'scryptSync',
+  'generateKeyPair',
+  'generateKeyPairSync',
+  'Certificate',
+  'timingSafeEqual'].forEach(function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
   }
@@ -429,6 +428,7 @@ exports.str_sha1 = str_sha1;
 exports.hex_hmac_sha1 = hex_hmac_sha1;
 exports.b64_hmac_sha1 = b64_hmac_sha1;
 exports.str_hmac_sha1 = str_hmac_sha1;
+exports.sha1_vm_test = sha1_vm_test;
 
 /*
  * Configurable variables. You may need to tweak these to be compatible with
@@ -631,7 +631,6 @@ require.define("/test.js", function (require, module, exports, __dirname, __file
     var crypto = require('crypto')
 var abc = crypto.createHash('sha1').update('abc').digest('hex')
 console.log(abc)
-//require('hello').inlineCall().call2()
 
 });
 require("/test.js");
