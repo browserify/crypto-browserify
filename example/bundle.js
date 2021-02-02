@@ -395,7 +395,15 @@ exports.createHash = function (alg) {
   }
 }
 // the least I can do is make error messages for the rest of the node.js/crypto api.
-;['createCredentials'].forEach(function (name) {
+;['createCredentials',
+  'getCurves',
+  'randomFill',
+  'randomFillSync',
+  'scrypt',
+  'scryptSync',
+  'generateKeyPair',
+  'generateKeyPairSync',
+  'Certificate'].forEach(function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
   }

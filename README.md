@@ -31,6 +31,14 @@ Here is the subset that is currently implemented:
 these features from node's `crypto` are still unimplemented.
 
 * createCredentials
+* getCurves
+* randomFill
+* randomFillSync
+* scrypt
+* scryptSync
+* generateKeyPair
+* generateKeyPairSync
+* Certificate
 
 ## contributions
 
