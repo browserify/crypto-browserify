@@ -42,5 +42,6 @@
   "browser": {
     "crypto": false
   },
-  "license": "MIT"
+  "license": "MIT",
+  "sideEffects": "false"
 }
