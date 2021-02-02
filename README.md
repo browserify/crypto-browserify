@@ -39,6 +39,7 @@ these features from node's `crypto` are still unimplemented.
 * generateKeyPair
 * generateKeyPairSync
 * Certificate
+* timingSafeEqual
 
 ## contributions
 

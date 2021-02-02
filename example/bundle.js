@@ -403,7 +403,8 @@ exports.createHash = function (alg) {
   'scryptSync',
   'generateKeyPair',
   'generateKeyPairSync',
-  'Certificate'].forEach(function (name) {
+  'Certificate',
+  'timingSafeEqual'].forEach(function (name) {
   exports[name] = function () {
     error('sorry,', name, 'is not implemented yet')
   }
