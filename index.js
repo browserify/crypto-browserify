@@ -52,6 +52,11 @@ exports.privateEncrypt = publicEncrypt.privateEncrypt
 exports.publicDecrypt = publicEncrypt.publicDecrypt
 exports.privateDecrypt = publicEncrypt.privateDecrypt
 
+var keygen = require('browser-keygen')
+
+exports.generateKeyPair     = keygen.generateKeyPair
+exports.generateKeyPairSync = keygen.generateKeyPairSync
+
 // the least I can do is make error messages for the rest of the node.js/crypto api.
 // ;[
 //   'createCredentials'

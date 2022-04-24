@@ -12,6 +12,7 @@ try {
   require('./random-bytes')
   require('./sign')
   require('./random-fill')
+  require('./genkey')
 } catch (e) {
   console.log('no secure rng avaiable')
 }
