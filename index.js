@@ -1,6 +1,29 @@
 'use strict'
 
 exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = require('randombytes')
+
+exports.getRandomValues = function (abv) {
+  var l = abv.length
+  while (l--) {
+    var bytes = exports.randomBytes(7)
+    var randomFloat = (bytes[0] % 32) / 32
+
+    for (var i = 0; i < bytes.length; i++) {
+      var byte = bytes[i]
+      randomFloat = (randomFloat + byte) / 256
+    }
+
+    abv[l] = Math.floor(randomFloat * 256)
+  }
+  return abv
+}
+
+exports.randomUUID = function () {
+  return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, function (c) {
+    return  (c ^ (exports.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16)
+  })
+}
+
 exports.createHash = exports.Hash = require('create-hash')
 exports.createHmac = exports.Hmac = require('create-hmac')
 

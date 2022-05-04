@@ -5,6 +5,9 @@ if (!process.browser) {
 }
 
 require('./pbkdf2')
+
+require('./random-uuid')
+
 try {
   require('randombytes')(8)
   require('./ecdh')
