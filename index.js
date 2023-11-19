@@ -90,7 +90,7 @@ exports.privateDecrypt = publicEncrypt.privateDecrypt
 
 var { Crypto } = require('@peculiar/webcrypto');
 var crypto = new Crypto();
-exports.subtle = crypto.subtle;
+exports.webcrypto = crypto;
 
 var rf = require('randomfill')
 
