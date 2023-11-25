@@ -1,6 +1,31 @@
 'use strict'
 
+var floor = Math.floor
+
 exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = require('randombytes')
+
+exports.getRandomValues = function getRandomValues(abv) {
+  var l = abv.length
+  while (l--) {
+    var bytes = exports.randomBytes(7)
+    var randomFloat = (bytes[0] % 32) / 32
+
+    for (var i = 0; i < bytes.length; i++) {
+      var byte = bytes[i]
+      randomFloat = (randomFloat + byte) / 256
+    }
+
+    abv[l] = floor(randomFloat * 256)
+  }
+  return abv
+}
+
+exports.randomUUID = function randomUUID() {
+  return '10000000-1000-4000-8000-100000000000'.replace(/[018]/g, function (c) {
+    return (c ^ (exports.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16)
+  })
+}
+
 exports.createHash = exports.Hash = require('create-hash')
 exports.createHmac = exports.Hmac = require('create-hmac')
 
@@ -64,6 +89,10 @@ exports.privateDecrypt = publicEncrypt.privateDecrypt
 //     ].join('\n'))
 //   }
 // })
+
+var { Crypto } = require('@peculiar/webcrypto')
+var crypto = new Crypto()
+exports.webcrypto = crypto
 
 var rf = require('randomfill')
 
