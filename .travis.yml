@@ -9,7 +9,7 @@ matrix:
     - node_js: '4'
       env: TEST_SUITE=unit
     - node_js: '4'
-      env: TEST_SUITE=standard
+      env: TEST_SUITE=lint
     - node_js: '4'
       env: TEST_SUITE=browser BROWSER_NAME=ie BROWSER_VERSION="10..latest"
     - node_js: '4'
