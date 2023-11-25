@@ -37,10 +37,13 @@ test('diffie-hellman mod groups', function (t) {
 
 test('diffie-hellman key lengths', function (t) {
 	[
-		64, 65, 192
+		64,
+		65,
+		192
 	].forEach(function (len) {
 		t.test(String(len), function (st) {
-			t.plan(3);
+			st.plan(3);
+
 			var dh2 = cryptoB.createDiffieHellman(len);
 			var prime2 = dh2.getPrime();
 			var p2 = prime2.toString('hex');

@@ -5,9 +5,10 @@ var bcCrypto = require('browserify-cipher/browser');
 var bcCyphers = bcCrypto.getCiphers();
 var randomBytes = require('pseudorandombytes');
 
-function runIt(i) {
+for (var i = 0; i < 4; i += 1) {
 	bcCrypto.listCiphers().forEach(function (cipher) {
 		test('run: ' + i, function (t) {
+			/* eslint no-loop-func: 0 */
 			t.test('ciphers: ' + cipher, function (st) {
 				st.plan(1);
 				var data = randomBytes(562);
@@ -26,12 +27,7 @@ function runIt(i) {
 			});
 		});
 	});
-	if (i < 4) {
-		setTimeout(runIt, 0, i + 1);
-	}
 }
-
-runIt(1);
 
 test('getCiphers', function (t) {
 	t.plan(1);

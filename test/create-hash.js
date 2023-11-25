@@ -8,40 +8,27 @@ var vectors = require('hash-test-vectors');
 
 function runTest(name, createHash, algorithm) {
 	test(name + ' test ' + algorithm + ' against test vectors', function (t) {
-		function run(i) {
-			if (i >= vectors.length) {
-				t.end();
-				return;
-			}
-			var obj = vectors[i];
-
+		vectors.forEach(function (obj, i) {
 			var input = new Buffer(obj.input, 'base64');
 			var node = obj[algorithm];
 			var js = createHash(algorithm).update(input).digest('hex');
-			if (js !== node) {
-				t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node);
-			}
+			t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node);
 
 			encodings.forEach(function (encoding) {
 				var eInput = new Buffer(obj.input, 'base64').toString(encoding);
 				var eNode = obj[algorithm];
 				var eJS = createHash(algorithm).update(eInput, encoding).digest('hex');
-				if (eJS !== eNode) {
-					t.equal(eJS, eNode, algorithm + '(testVector[' + i + '], ' + encoding + ') == ' + eNode);
-				}
+				t.equal(eJS, eNode, algorithm + '(testVector[' + i + '], ' + encoding + ') == ' + eNode);
 			});
 			input = new Buffer(obj.input, 'base64');
 			node = obj[algorithm];
 			var hash = createHash(algorithm);
 			hash.end(input);
 			js = hash.read().toString('hex');
-			if (js !== node) {
-				t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node);
-			}
-			setTimeout(run, 0, i + 1);
-		}
+			t.equal(js, node, algorithm + '(testVector[' + i + ']) == ' + node);
+		});
 
-		run(0);
+		t.end();
 	});
 }
 

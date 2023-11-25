@@ -8,33 +8,20 @@ var vectors = require('hash-test-vectors/hmac');
 function testLib(name, createHmac) {
 	algorithms.forEach(function (alg) {
 		test(name + ' hmac(' + alg + ')', function (t) {
-			function run(i) {
-				if (i >= vectors.length) {
-					t.end();
-					return;
-				}
-				var input = vectors[i];
+			vectors.forEach(function (input) {
 				var output = createHmac(alg, new Buffer(input.key, 'hex'))
 					.update(input.data, 'hex').digest();
 
 				output = input.truncate ? output.slice(0, input.truncate) : output;
 				output = output.toString('hex');
-				if (output !== input[alg]) {
-					t.equal(output, input[alg]);
-				}
-				setTimeout(run, 0, i + 1);
-			}
+				t.equal(output, input[alg]);
+			});
 
-			run(0);
+			t.end();
 		});
 
 		test('hmac(' + alg + ')', function (t) {
-			function run(i) {
-				if (i >= vectors.length) {
-					t.end();
-					return;
-				}
-				var input = vectors[i];
+			vectors.forEach(function (input) {
 				var hmac = createHmac(alg, new Buffer(input.key, 'hex'));
 
 				hmac.end(input.data, 'hex');
@@ -42,13 +29,10 @@ function testLib(name, createHmac) {
 
 				output = input.truncate ? output.slice(0, input.truncate) : output;
 				output = output.toString('hex');
-				if (output !== input[alg]) {
-					t.equal(output, input[alg]);
-				}
-				setTimeout(run, 0, i + 1);
-			}
+				t.equal(output, input[alg]);
+			});
 
-			run(0);
+			t.end();
 		});
 	});
 }
