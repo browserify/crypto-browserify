@@ -20,17 +20,17 @@
 		"node": "*"
 	},
 	"dependencies": {
-		"browserify-cipher": "^1.0.0",
-		"browserify-sign": "^4.0.0",
-		"create-ecdh": "^4.0.0",
-		"create-hash": "^1.1.0",
-		"create-hmac": "^1.1.0",
-		"diffie-hellman": "^5.0.0",
-		"inherits": "^2.0.1",
-		"pbkdf2": "^3.0.3",
-		"public-encrypt": "^4.0.0",
-		"randombytes": "^2.0.0",
-		"randomfill": "^1.0.3"
+		"browserify-cipher": "^1.0.1",
+		"browserify-sign": "^4.2.2",
+		"create-ecdh": "^4.0.4",
+		"create-hash": "^1.2.0",
+		"create-hmac": "^1.1.7",
+		"diffie-hellman": "^5.0.3",
+		"inherits": "^2.0.4",
+		"pbkdf2": "^3.1.2",
+		"public-encrypt": "^4.0.3",
+		"randombytes": "^2.1.0",
+		"randomfill": "^1.0.4"
 	},
 	"devDependencies": {
 		"@ljharb/eslint-config": "^21.1.0",
