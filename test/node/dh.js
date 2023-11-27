@@ -3,6 +3,7 @@
 var test = require('tape');
 var cryptoB = require('../../');
 var crypto = require('crypto');
+var semverSatisfies = require('semver/functions/satisfies');
 
 test('diffie-hellman mod groups', function (t) {
 	[
@@ -39,11 +40,12 @@ test('diffie-hellman key lengths', function (t) {
 	[
 		64,
 		65,
-		192
+		192,
+		512,
+		1024
 	].forEach(function (len) {
-		t.test(String(len), function (st) {
-			st.plan(3);
-
+		var modulusTooSmall = semverSatisfies(process.version, '>= 17') && len < 512;
+		t.test(String(len), { skip: modulusTooSmall && 'node 17+ requires a length >= 512' }, function (st) {
 			var dh2 = cryptoB.createDiffieHellman(len);
 			var prime2 = dh2.getPrime();
 			var p2 = prime2.toString('hex');
@@ -60,6 +62,8 @@ test('diffie-hellman key lengths', function (t) {
 			var pub1 = dh1.computeSecret(pubk2).toString('hex');
 			var pub2 = dh2.computeSecret(dh1.getPublicKey()).toString('hex');
 			st.equals(pub1, pub2, 'equal secrets');
+
+			st.end();
 		});
 	});
 });
