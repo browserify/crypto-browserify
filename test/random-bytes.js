@@ -46,7 +46,7 @@ Object.entries(randomBytesFunctions).forEach(function (entry) {
 		// test that the random numbers are plausably random.
 		// Math.random() will pass this, but this will catch
 		// terrible mistakes such as this blunder:
-		// https://github.com/dominictarr/crypto-browserify/commit/3267955e1df7edd1680e52aeede9a89506ed2464#commitcomment-7916835
+		// https://github.com/browserify/crypto-browserify/commit/3267955e1df7edd1680e52aeede9a89506ed2464#commitcomment-7916835
 
 		// this doesn't check that the bytes are in a random *order*
 		// but it's better than nothing.

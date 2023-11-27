@@ -359,11 +359,7 @@ require.define('/node_modules/crypto-browserify/index.js', function (require, mo
 
 	function error() {
 		var m = Array.prototype.slice.call(arguments).join(' ');
-		throw new Error([
-			m,
-			'we accept pull requests',
-			'http://github.com/dominictarr/crypto-browserify'
-		].join('\n'));
+		throw new Error(m+'\nwe accept pull requests\nhttp://github.com/browserify/crypto-browserify'.join('\n'));
 	}
 
 	exports.createHash = function (alg) {
