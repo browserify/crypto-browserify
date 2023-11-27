@@ -16,6 +16,9 @@
 		"posttest": "aud --production",
 		"browser": "zuul --browser-version $BROWSER_VERSION --browser-name $BROWSER_NAME -- test/index.js"
 	},
+	"funding": {
+		"url": "https://github.com/sponsors/ljharb"
+	},
 	"engines": {
 		"node": "*"
 	},

@@ -1,10 +1,15 @@
-# crypto-browserify
+# crypto-browserify <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
 
 A port of node's `crypto` module to the browser.
 
-[![Build Status](https://travis-ci.org/browserify/crypto-browserify.svg?branch=master)](https://travis-ci.org/browserify/crypto-browserify)
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+[![github actions][actions-image]][actions-url]
+[![coverage][codecov-image]][codecov-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/crypto-browserify.svg)](https://saucelabs.com/u/crypto-browserify)
+
+[![npm badge][npm-badge-png]][package-url]
+
 
 The goal of this module is to reimplement node's crypto module,
 in pure javascript so that it can run in the browser.
@@ -48,3 +53,19 @@ and post comments if you do.
 ## License
 
 MIT
+
+[package-url]: https://npmjs.org/package/crypto-browserify
+[npm-version-svg]: https://versionbadg.es/browserify/crypto-browserify.svg
+[deps-svg]: https://david-dm.org/browserify/crypto-browserify.svg
+[deps-url]: https://david-dm.org/browserify/crypto-browserify
+[dev-deps-svg]: https://david-dm.org/browserify/crypto-browserify/dev-status.svg
+[dev-deps-url]: https://david-dm.org/browserify/crypto-browserify#info=devDependencies
+[npm-badge-png]: https://nodei.co/npm/crypto-browserify.png?downloads=true&stars=true
+[license-image]: https://img.shields.io/npm/l/crypto-browserify.svg
+[license-url]: LICENSE
+[downloads-image]: https://img.shields.io/npm/dm/crypto-browserify.svg
+[downloads-url]: https://npm-stat.com/charts.html?package=crypto-browserify
+[codecov-image]: https://codecov.io/gh/browserify/crypto-browserify/branch/main/graphs/badge.svg
+[codecov-url]: https://app.codecov.io/gh/browserify/crypto-browserify/
+[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/browserify/crypto-browserify
+[actions-url]: https://github.com/browserify/crypto-browserify/actions
