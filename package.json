@@ -11,8 +11,9 @@
 	"scripts": {
 		"lint": "eslint --ext=js,mjs .",
 		"pretest": "npm run lint",
-		"test": "npm run unit",
-		"unit": "node test/",
+		"tests-only": "tape 'test/**/*.js'",
+		"test": "npm run tests-only",
+		"posttest": "aud --production",
 		"browser": "zuul --browser-version $BROWSER_VERSION --browser-name $BROWSER_NAME -- test/index.js"
 	},
 	"engines": {
@@ -33,6 +34,7 @@
 	},
 	"devDependencies": {
 		"@ljharb/eslint-config": "^21.1.0",
+		"aud": "^2.0.3",
 		"eslint": "=8.8.0",
 		"hash-test-vectors": "^1.3.2",
 		"pseudorandombytes": "^2.0.0",
