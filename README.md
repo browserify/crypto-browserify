@@ -10,9 +10,7 @@ A port of node's `crypto` module to the browser.
 
 [![npm badge][npm-badge-png]][package-url]
 
-
-The goal of this module is to reimplement node's crypto module,
-in pure javascript so that it can run in the browser.
+The goal of this module is to reimplement node's crypto module, in pure javascript so that it can run in the browser.
 
 Here is the subset that is currently implemented:
 
@@ -43,12 +41,10 @@ If you are interested in writing a feature, please implement as a new module,
 which will be incorporated into crypto-browserify as a dependency.
 
 All deps must be compatible with node's crypto
-(generate example inputs and outputs with node,
-and save base64 strings inside JSON, so that tests can run in the browser.
+(generate example inputs and outputs with node, and save base64 strings inside JSON, so that tests can run in the browser)
 see [sha.js](https://github.com/dominictarr/sha.js)
 
-Crypto is _extra serious_ so please do not hesitate to review the code,
-and post comments if you do.
+Crypto is _extra serious_ so please do not hesitate to review the code, and post comments if you do.
 
 ## License
 
