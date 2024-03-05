@@ -3,7 +3,7 @@
 var test = require('tape');
 var cryptoB = require('../../');
 var crypto = require('crypto');
-var semverSatisfies = require('semver/functions/satisfies');
+var satisfies = require('semver').satisfies;
 
 test('diffie-hellman mod groups', function (t) {
 	[
@@ -44,7 +44,7 @@ test('diffie-hellman key lengths', function (t) {
 		512,
 		1024
 	].forEach(function (len) {
-		var modulusTooSmall = semverSatisfies(process.version, '>= 17') && len < 512;
+		var modulusTooSmall = satisfies(process.version, '>= 17') && len < 512;
 		t.test(String(len), { skip: modulusTooSmall && 'node 17+ requires a length >= 512' }, function (st) {
 			var dh2 = cryptoB.createDiffieHellman(len);
 			var prime2 = dh2.getPrime();

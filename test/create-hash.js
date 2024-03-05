@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var satisfies = require('semver/functions/satisfies');
+var satisfies = require('semver').satisfies;
 
 var algorithms = ['sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'md5', 'rmd160'];
 var encodings = ['hex', 'base64']; // FIXME: test binary

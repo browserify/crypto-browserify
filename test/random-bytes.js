@@ -3,6 +3,7 @@
 var test = require('tape');
 var crypto = require('../');
 var randomBytes = require('randombytes');
+var entries = require('object.entries');
 
 var randomBytesFunctions = {
 	randomBytes: randomBytes,
@@ -10,7 +11,7 @@ var randomBytesFunctions = {
 };
 
 // Both randomBytes and pseudoRandomBytes should provide the same interface
-Object.entries(randomBytesFunctions).forEach(function (entry) {
+entries(randomBytesFunctions).forEach(function (entry) {
 	var randomBytesName = entry[0];
 	var randomBytesFn = entry[1];
 
