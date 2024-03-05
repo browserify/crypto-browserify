@@ -4,6 +4,7 @@
 	"description": "implementation of crypto for the browser",
 	"version": "3.12.0",
 	"homepage": "https://github.com/browserify/crypto-browserify",
+	"sideEffects": false,
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/browserify/crypto-browserify.git"
