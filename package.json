@@ -13,8 +13,7 @@
 		"pretest": "npm run lint",
 		"tests-only": "tape 'test/**/*.js'",
 		"test": "npm run tests-only",
-		"posttest": "aud --production",
-		"browser": "zuul --browser-version $BROWSER_VERSION --browser-name $BROWSER_NAME -- test/index.js"
+		"posttest": "aud --production"
 	},
 	"funding": {
 		"url": "https://github.com/sponsors/ljharb"
@@ -44,8 +43,7 @@
 		"pseudorandombytes": "^2.0.0",
 		"safe-buffer": "^5.2.1",
 		"semver": "^6.3.1",
-		"tape": "^5.7.5",
-		"zuul": "^3.12.0"
+		"tape": "^5.7.5"
 	},
 	"browser": {
 		"crypto": false
