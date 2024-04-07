@@ -1,5 +1,7 @@
 'use strict'
 
+var floor = Math.floor
+
 exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = require('randombytes')
 
 exports.getRandomValues = function (abv) {
