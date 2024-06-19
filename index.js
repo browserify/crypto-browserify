@@ -5,6 +5,9 @@ exports.randomBytes = exports.rng = exports.pseudoRandomBytes = exports.prng = r
 
 // eslint-disable-next-line no-multi-assign
 exports.createHash = exports.Hash = require('create-hash');
+exports.hash = function (algorithm, data, outputEncoding) {
+	return exports.createHash(algorithm).update(data).digest(outputEncoding || 'hex');
+};
 
 // eslint-disable-next-line no-multi-assign
 exports.createHmac = exports.Hmac = require('create-hmac');
