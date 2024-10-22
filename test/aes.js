@@ -34,7 +34,8 @@ test('getCiphers', function (t) {
 	t.ok(bcCyphers.length, 'get ciphers returns an array');
 });
 
-test('through crypto browserify works', function (t) {
+// eslint-disable-next-line global-require
+test('through crypto browserify works', { skip: !require('crypto').createCipher && 'node 22+ removes createCipher' }, function (t) {
 	t.plan(2);
 	var crypto = require('../'); // eslint-disable-line global-require
 	var cipher = 'aes-128-ctr';
