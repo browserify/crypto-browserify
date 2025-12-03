@@ -16,7 +16,7 @@ try {
 	require('./random-bytes');
 	require('./sign');
 	require('./random-fill');
-} catch (e) {
+} catch (e) { // eslint-disable-line no-unused-vars
 	console.log('no secure rng avaiable');
 }
 require('./aes');
